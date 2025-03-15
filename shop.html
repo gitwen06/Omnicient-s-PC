@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/GeForceFont/">
+  <link rel="stylesheet" href="stylesheet.css">
+  <link rel="stylesheet" href="all.min.css">
+  <link rel="stylesheet" href="hover.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="login.js"></script>
+  <script type="module" src="index.js"></script>
+  <link rel="stylesheet" href="media.css">
+  <link rel="stylesheet" href="shop-style.css">
+  <title>Omnicient's PC Official Site: Graphics Cards, CPUs, RAM, Pre-built PCs</title>
+  <style>
+    .products {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .product-card {
+      text-align: center;
+      max-width: 200px;
+    }
+
+    .product-card img {
+      width: 150px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="container landscape">
+    <header>
+      <section class="nav-wrapper">
+        <nav id="nav_1">
+          <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo">
+        </nav>
+      </section>
+      <nav id="nav_2">
+        <ul id="list-1">
+          <h2><a href="#" class="title">OMNISCIENT'S PC</a></h2>
+          <li><a href="index.html" class="homepage">Home</a></li>
+          <li><a href="#cpus" class="products">CPU</a></li>
+          <li><a href="#rams" class="experience">RAM</a></li>
+          <li><a href="#gpus" class="shop">Graphics Card</a></li>
+          <li><a href="#prebuilt" class="prebuilt">Pre-Built PCs</a></li>
+          <li id="loginNav"><a href="Login.html" class="Log in">Log In</a></li>
+          <li id="userNav" style="display: none;"><span id="usernameDisplay"></span></li>
+          <li id="logoutNav" style="display: none;"><a href="#" id="logoutLink">Log Out</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section id="products-section" class="landscape-view">
+      <div id="cpus" class="section">
+        <h2 class="product-title">CPU</h2>
+        <div class="products"></div>
+      </div>
+      <div id="rams" class="section">
+        <h2 class="product-title">RAM</h2>
+        <div class="products"></div>
+      </div>
+      <div id="gpus" class="section">
+        <h2 class="product-title">Graphic Cards</h2>
+        <div class="products"></div>
+      </div>
+      <div id="prebuilt" class="section">
+        <h2 class="product-title">Pre-Built PC</h2>
+        <div class="products"></div>
+      </div>
+      </div>
+    </section>
+
+    <footer id="main-footer">
+      <section class="logo">
+        <img src="images/Omniscient_s_PC_LOGO__1_-removebg-preview.png" alt="Omniscient's PC Logo">
+      </section>
+      <p class="footer-link">
+        <span><a href="#">Privacy Policy</a></span> |
+        <span><a href="#">Legal Info</a></span> |
+        <span><a href="#">Contact Us</a></span>
+      </p>
+      <section class="copyright">Copyright &copy; 2024 Omniscient's PC</section>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const products = {
+          cpus: [
+            { name: "AMD Ryzen 7 5700G 3.8Ghz", price: "₱10,800.00", img: "https://easypc.com.ph/cdn/shop/products/AMD_Ryzen_7_5700G_Socket_Am4_3.8GHz_2048x2048.jpg" },
+            { name: "AMD Ryzen 5 5500 3.6Ghz", price: "₱3,975.00", img: "https://easypc.com.ph/cdn/shop/files/AMD_Ryzen_5_5500_Socket_Am4_3.6GHz_Processor_2048x2048.jpg" }
+          ],
+          rams: [
+            { name: "Team Elite TForce Delta 16GB 3200MHz DDR4 RGB", price: "₱2,315.00", img: "https://easypc.com.ph/cdn/shop/products/Team_Elite_TForce_Delta_16gb_White_2048x2048.jpg" }
+          ],
+          gpus: [
+            { name: "Galax NVIDIA GeForce GTX 1650 EX Plus", price: "₱8,550.00", img: "https://easypc.com.ph/cdn/shop/products/Galax_GTX_1650_EX_Plus_1-Click_OC-a_2048x2048.jpg" }
+          ],
+          prebuilt: [
+            { name: "Core i3 12100 / H610 / 8GB DDR4 / 256GB SSD", price: "₱14,795.00", img: "https://easypc.com.ph/cdn/shop/files/Core_i3_12100_H610_8GB_DDR4_256GB_SSD_PC_Case_M-ATX_with_700W_2048x2048.png" }
+          ]
+        };
+      
+        Object.keys(products).forEach(category => {
+          const container = document.querySelector(`#${category} .products`);
+          if (!container) {
+            console.error(`Container for category ${category} not found!`);
+            return;
+          }
+      
+          products[category].forEach(product => {
+            const productCard = document.createElement("div");
+            productCard.classList.add("product-card");
+            productCard.innerHTML = `
+              <img src="${product.img}" alt="${product.name}">
+              <h3>${product.name}</h3>
+              <p>${product.price}</p>
+              <a href="Transaction.html?name=${encodeURIComponent(product.name)}&image=${encodeURIComponent(product.img)}&price=${encodeURIComponent(product.price)}" class="buy-now-btn">
+
+                <button>Buy Now</button>
+              </a>
+            `;
+            container.appendChild(productCard);
+          });
+        });
+      });
+    </script>
+  </section>
+</body>
+
+</html>

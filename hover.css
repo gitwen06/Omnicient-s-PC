@@ -1,0 +1,39 @@
+/* BUTTON FORMAT 1*/
+.learn-more {
+    display: inline-block;
+    font-family: "GeForce Bold Alt";
+    background-color: #76b900;
+    font-size: 17px; 
+    padding: 10px;
+    letter-spacing: .06rem;
+  }
+  .subscribe-button {
+    font-family: "GeForce Bold Alt";
+    background-color: #76b900;
+    font-size: 18px; 
+    padding: 10px 8px;
+    letter-spacing: .06rem;
+  }
+  
+  /* BUTTON FORMAT 2*/
+  .join {
+    display: inline-block;
+    position: absolute;
+    top: 52%;
+    left: 5%;
+    background-color: #76b900;
+    font-size: 20px; 
+    padding: 10px 15px;
+  }
+  
+  .learn-more:hover, .subscribe-button:hover,.join:hover {
+    background-color: #89cc16;
+  }
+  
+  #list-1 li:hover {
+    color: #76b900;
+  }
+  
+  .icon-area i:hover {
+    color: #777;
+  }

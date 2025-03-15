@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omnicient's PC Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="login.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px #00ff00; }
+            50% { box-shadow: 0 0 20px #00ff00; }
+            100% { box-shadow: 0 0 10px #00ff00; }
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: radial-gradient(circle, rgba(240, 240, 240, 0.8), rgba(220, 220, 220, 0.8));
+            background-image: url('images/samplepic.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #404040;
+            padding: 10px 20px;
+            border-bottom: 2px solid #00ff00;
+        }
+        .navbar img {
+            height: 75px; 
+            width: auto;
+            max-width: 100%; 
+            object-fit: contain;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            width: 100%;
+        }
+        .auth-box {
+            background: rgba(17, 17, 17, 0.6);
+            border: 2px solid #00ff00;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            text-align: center;
+            width: 320px;
+            animation: glow 2s infinite alternate;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(20px);
+        }
+        .auth-box:hover {
+            transform: scale(1.05);
+        }
+        h2 {
+            color: #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .input-group {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            background: #222;
+            padding: 10px;
+            border-radius: 5px;
+            border-right: 2px solid gray;
+            border-bottom: 2px solid gray;
+        }
+        .input-group i {
+            color: #00ff00;
+            margin-right: 10px;
+        }
+        .input-group input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #fff;
+            outline: none;
+        }
+        .input-group input:focus {
+            border-right-color: #00ff00;
+            border-bottom-color: #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+        }
+        .btn {
+            background: #00ff00;
+            color: #000;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #00cc00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+        }
+        .toggle-text {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        .toggle-text span {
+            color: #00ff00;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .toggle-text span:hover {
+            text-decoration: underline;
+            color: #00cc00;
+        }
+        .footer {
+            background: rgba(17, 17, 17, 0.9);
+            color: #bbb;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 0.85rem;
+            border-top: 2px solid #00ff00;
+        }
+        .footer a {
+            color: #00ff00;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #00cc00;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omnicient's PC Logo">
+    </div>
+    <div class="container">
+        <div class="auth-box">
+            <h2 id="form-title">Login</h2>
+            
+            <form>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Email" id="email" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password" id="password" required>
+                </div>
+                <button type="submit" class="btn" id="loginbtn">Login</button>
+                <p class="toggle-text">Don't have an account? <a href="signup.html"> <span id="toggle">Register</span></a></p>   
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <p>© 2025 Omnicient's PC Corporation. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </div>
+</body>
+</html>

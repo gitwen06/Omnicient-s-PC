@@ -1,0 +1,497 @@
+@media only screen and (max-width: 767px){
+    #nav_1 img {
+      margin-left: 0;
+      transition: linear 0.5s;
+    }
+    #nav_2 ul li, .base-image{
+      display: none;
+    }
+    #list-1 h2 {
+      margin-left: 20px;
+      margin-top: 20px;
+      font-size: 1.7rem;
+      transition: linear 0.5s;
+    }
+    #title {
+      margin-top: 100px;
+    }
+    ul#list-1 {
+      height: 50px;
+    } 
+    .img_1 {
+      width: 100%;
+      height: 415px;
+      background-size: contain;
+      margin-left: 0;
+      padding: 0;
+    }
+    .base-image img {
+      width: 100%;
+    }
+    .top-area h1 {
+      font-size: 2rem;
+      top: 25%;
+    }
+    .top-area p {
+      font-size: 1.4rem;
+      top: 32%;
+    }
+    .join {
+      position: absolute;
+      top: 40%;
+      font-size: .8rem;
+    }
+    .middle-wrap {
+      justify-content: flex-start;
+      text-align: center;
+      padding-top: 0;
+    }
+    .middle { 
+      max-width: 100%;
+      padding: 0 15px;
+    }
+    .middle h2 {
+      font-size: 1.2rem;
+      text-align: left;
+    }
+    .middle p {
+      font-size: .95rem;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    .learn-more{
+      font-size: .8rem;
+      margin-bottom: 5px;
+      margin-bottom: 55px;
+    }
+    .base#products, .base#community {
+      margin-bottom: 20px;
+    }
+    .base h3 {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+    .base li {
+      display: inline-flex;
+      font-size: .95rem;
+      padding-right: 45px;
+    }
+    .subscribe .sign-up{
+      font-size: 1.5rem;
+      margin: 0;
+      align-self: center;
+      margin-bottom: 30px;
+    }
+    .subscribe i{
+      align-self: center;
+      margin: 0;
+    }
+    .sub-container {
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 40px;
+    }
+    .icon-area {
+      flex-direction: column;
+    }
+    .icon-area li {
+      margin-top: 15px;
+      padding-left: 10px;
+    }
+    .bottom-area {
+      margin-bottom: 15px;
+    }
+    #main-footer {
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 915px){
+    #nav_1 img {
+      margin-left: 20px;
+      transition: linear 0.5s;
+    }
+    #nav_2 ul li, .base-image {
+      display: none;
+    }
+    #list-1 h2 {
+      margin-left: 40px;
+      font-size: 1.7rem;
+      transition: linear 0.5s;
+    }
+    ul#list-1 {
+      height: 50px;
+    } 
+    .img_1 {
+      width: 100%;
+      height: 460px;
+      background-size: cover;
+      margin-left: 0;
+    }
+    .base-image img {
+      height: 93px;
+      margin-left: 0;
+      width: 100%;
+    }
+    .top-area h1 {
+      font-size: 2.4rem;
+      top: 25%;
+    }
+    .top-area p {
+      font-size: 1.8rem;
+      top: 33.5%;
+    }
+    .join {
+      position: absolute;
+      top: 42%;
+      font-size: 1rem;
+    }
+    .middle-wrap {
+      justify-content: flex-start;
+      text-align: center;
+    }
+    .middle { 
+      max-width: 100%;
+      padding: 0 25px;
+    }
+    .middle h2 {
+      font-size: 1.7rem;
+      text-align: left;
+    }
+    .middle p {
+      font-size: .95rem;
+      margin-bottom: 1.2rem;
+      text-align: left;
+    }
+    .learn-more{
+      font-size: 1rem;
+      margin-bottom: 5px;
+      margin-bottom: 55px;
+    }
+    .base#products, .base#community {
+      margin-bottom: 20px;
+    }
+    .bottom-area-container {
+      display: flex;
+      justify-content: flex-start;
+    }
+    .base {
+      max-width: 100%;
+      min-width: 370px;
+    }
+    .base h3 {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+    .base li {
+      /* display: inline-flex; */
+      font-size: .95rem;
+      padding-right: 25px;
+    }
+    .subscribe .sign-up{
+      font-size: 1.5rem;
+      margin: 0;
+      align-self: center;
+      margin-bottom: 30px;
+    }
+    .subscribe i{
+      align-self: center;
+      margin: 0;
+    }
+    .sub-container {
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 40px;
+    }
+    .icon-area {
+      flex-direction: column;
+    }
+    .icon-area li {
+      margin-top: 15px;
+      padding-left: 10px;
+    }
+    .bottom-area {
+      margin-bottom: 15px;
+    }
+    #main-footer {
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+  }
+  @media (min-width: 916px) and (max-width: 1024px){
+    #nav_2 ul li, .base-image {
+      display: none;
+    }
+     #nav_1 img {
+      margin-left: 20px;
+      transition: linear 0.5s;
+    }
+    #list-1 h2 {
+      margin-left: 40px;
+      font-size: 1.7rem;
+      transition: linear 0.5s;
+    }
+    ul#list-1 {
+      height: 50px;
+    } 
+    .img_1 {
+      width: 100%;
+      height: 460px;
+      background-size: cover;
+      margin-left: 0;
+    }
+    .base-image img {
+      width: 100%;
+    }
+    .top-area h1 {
+      font-size: 2.4rem;
+      top: 25%;
+    }
+    .top-area p {
+      font-size: 1.8rem;
+      top: 33.5%;
+    }
+    .join {
+      position: absolute;
+      top: 42%;
+      font-size: 1rem;
+    }
+    .middle-wrap {
+      justify-content: flex-start;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .middle-wrap img {
+      padding: 0 50px;
+    }
+    .middle { 
+      max-width: 100%;
+      padding: 0 15px;
+    }
+    .middle h2 {
+      font-size: 1.7rem;
+      text-align: left;
+    }
+    .middle p {
+      font-size: .95rem;
+      margin-bottom: 1.2rem;
+      text-align: left;
+    }
+    .learn-more{
+      font-size: 1rem;
+      margin-bottom: 5px;
+      margin-bottom: 55px;
+      display: inline-flex;
+    }
+    .base#products, .base#community {
+      margin-bottom: 20px;
+    }
+    .bottom-area-container {
+      display: flex;
+      justify-content: flex-start;
+    }
+    .base {
+      width: 100%;
+      max-width: 100px;
+    }
+    .base h3 {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+    .base li {
+      /* display: inline-flex; */
+      font-size: .95rem;
+      padding-right: 25px;
+    }
+    .subscribe .sign-up{
+      font-size: 1.5rem;
+      margin: 0;
+      align-self: center;
+      margin-bottom: 30px;
+    }
+    
+    .subscribe i{
+      align-self: center;
+      margin: 0;
+    }
+    .sub-container {
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 40px;
+    }
+    .icon-area {
+      flex-direction: column;
+    }
+    .icon-area li {
+      margin-top: 15px;
+      padding-left: 10px;
+    }
+    .bottom-area {
+      margin-bottom: 15px;
+    }
+    #main-footer {
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+  }
+  @media (min-width: 1025px) and (max-width: 1253px){
+    .drivers, .news, .support, .shop {
+      display: none;
+    }
+    #nav_2 ul li {
+      padding-top: 25px;
+      font-size: .8rem;
+    }
+     #nav_1 img {
+      margin-left: 20px;
+      transition: linear 0.5s;
+    }
+    #list-1 h2 {
+      margin-left: 40px;
+      font-size: 1.9rem;
+      transition: linear 0.4s;
+    }
+    ul#list-1 {
+      height: 65px;
+    } 
+    .img_1 {
+      width: 100%;
+      height: 460px;
+      background-size: cover;
+      margin-left: 0;
+    }
+    .base-image img {
+      width: 100%;
+      height: 80px;
+      margin-left: -5px;
+    }
+    .top-area h1 {
+      font-size: 2.6rem;
+      top: 25%;
+    }
+    .top-area p {
+      font-size: 2rem;
+      top: 35.5%;
+    }
+    .join {
+      position: absolute;
+      top: 45%;
+      font-size: 1rem;
+    }
+    .middle-wrap {
+      text-align: left;
+      justify-content: space-around;
+    }
+    .middle {
+      padding: 0;
+    }
+    .middle p {
+      font-size: 1rem;
+    }
+    .bottom-area-container {
+      justify-content: flex-start;
+    }
+    .base {
+      max-width: 350px;
+    }
+    .sub-container {
+      margin-bottom: 50px;
+    }
+    .icon-area li{
+    align-self: center;
+    }
+    #main-footer {
+      padding: 0 0 0 20px;
+      margin: 0;
+    }
+  }
+  @media (min-width: 1254px) and (max-width: 1350px) {
+    #nav_2 ul li {
+      padding: 25px 30px 0px 0px;
+      font-size: .8rem;
+    }
+     #nav_1 img {
+      transition: linear 0.1s;
+    }
+    #list-1 h2 {
+      transition: linear 0.5s;
+    }
+    ul#list-1 {
+      height: 65px;
+    } 
+    .top-area h1 {
+      font-size: 3.5rem;
+      top: 25%;
+    }
+    .top-area p {
+      font-size: 2rem;
+      top: 34.5%;
+    }
+    .join {
+      position: absolute;
+      top: 42%;
+      /* font-size: 1rem; */
+    }
+    .img_1 {
+      width: 100%;
+      background-size: cover;
+    }
+    .base-image img {
+      width: 100%;
+      height: 100px;
+      margin-left: 0px;
+    }
+    .base {
+      min-width: 350px;
+    }
+  }
+  @media (min-width: 1351px) and (max-width: 1550px) {
+    #nav_2 ul li {
+      padding: 25px 30px 0px 0px;
+      font-size: .95rem;
+    }
+    .top-area h1 {
+      font-size: 3.5rem;
+      top: 25%;
+    }
+    .top-area p {
+      font-size: 2rem;
+      top: 34.5%;
+    }
+    .join {
+      position: absolute;
+      top: 42.5%;
+      /* font-size: 1rem; */
+    }
+   .base-image img {
+      width: 100%;
+      height: 100px;
+      margin-left: 0px;
+    }
+  }
+    @media (min-width: 1551px) and (max-width: 1744px){
+      .base-image img {
+        height: 103px;
+        margin-left: 15%;
+    }
+    .top-area h1 {
+      font-size: 4rem;
+      top: 25%;
+    }
+    .top-area p {
+      font-size: 2.4rem;
+      top: 35.5%;
+    }
+    .join {
+      position: absolute;
+      top: 44.5%;
+      /* font-size: 1rem; */
+    }
+  }
