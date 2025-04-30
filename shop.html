@@ -48,10 +48,6 @@
         <ul id="list-1">
           <h2><a href="#" class="title">OMNISCIENT'S PC</a></h2>
           <li><a href="index.html" class="homepage">Home</a></li>
-          <li><a href="#cpus" class="products">CPU</a></li>
-          <li><a href="#rams" class="experience">RAM</a></li>
-          <li><a href="#gpus" class="shop">Graphics Card</a></li>
-          <li><a href="#prebuilt" class="prebuilt">Pre-Built PCs</a></li>
           <li id="loginNav"><a href="Login.html" class="Log in">Log In</a></li>
           <li id="userNav" style="display: none;"><span id="usernameDisplay"></span></li>
           <li id="logoutNav" style="display: none;"><a href="#" id="logoutLink">Log Out</a></li>
@@ -93,39 +89,70 @@
       document.addEventListener("DOMContentLoaded", function () {
         const products = {
           cpus: [
-            { name: "AMD Ryzen 7 5700G 3.8Ghz", price: "₱10,800.00", img: "https://easypc.com.ph/cdn/shop/products/AMD_Ryzen_7_5700G_Socket_Am4_3.8GHz_2048x2048.jpg" },
-            { name: "AMD Ryzen 5 5500 3.6Ghz", price: "₱3,975.00", img: "https://easypc.com.ph/cdn/shop/files/AMD_Ryzen_5_5500_Socket_Am4_3.6GHz_Processor_2048x2048.jpg" }
+            { name: "Intel Core I9 14900KF 14th Gen", price: "₱42,000.00", img: "https://img.lazcdn.com/g/p/9c094593680930fe5949b6d2775bd291.png_720x720q80.png_.webp", architecture: "Raptor Lake Refresh (14th Gen)", cores: "24", threads: "32", maxturbofrequency: "6.0GHz", sockettype: "LGA 1700", overclockable: "Yes" },
+            { name: "AMD Ryzen 9 7950X CPU", price: "₱31,000.00", img: "https://www.tradeinn.com/f/13941/139411427/amd-r9-7950x-4.50ghz-cpu.webp", architecture: " Zen 4 (Raphael)", cores: "16", threads: "32", maxturbofrequency: "5.7GHz", sockettype: "AM5", overclockable: "Yes" },
+            { name: "AMD Ryzen 7 5700G ", price: "₱10,800.00", img: "https://easypc.com.ph/cdn/shop/products/AMD_Ryzen_7_5700G_Socket_Am4_3.8GHz_2048x2048.jpg", architecture: "Zen 3 (Cezanne)", cores: "8", threads: "16", maxturbofrequency: "4.6GHz", sockettype: "AM4", overclockable: "Yes" },
+            { name: "AMD Ryzen 5 5500 ", price: "₱3,975.00", img: "https://easypc.com.ph/cdn/shop/files/AMD_Ryzen_5_5500_Socket_Am4_3.6GHz_Processor_2048x2048.jpg", architecture: " Zen 3 (Cezanne)", cores: "6", threads: "12", maxturbofrequency: "4.2GHz", sockettype: "AM4", overclockable: "Yes" },
+
+
           ],
+
           rams: [
-            { name: "Team Elite TForce Delta 16GB 3200MHz DDR4 RGB", price: "₱2,315.00", img: "https://easypc.com.ph/cdn/shop/products/Team_Elite_TForce_Delta_16gb_White_2048x2048.jpg" }
+            { name: "Crucial 128GB Kit (2X64GB) DDR5 RAM 5600MHz", price: "₱16,050.00", img: "https://m.media-amazon.com/images/I/61O5IUjSDSL._AC_SX425_PIbundle-2,TopRight,0,0_SH20_.jpg", memorytype: "DDR5", amount: "2x64GB", memoryspeed: "5600MHz", xmp: "Supports XMP 3.0", storage: "128GB RAM", testedspeed: "5600 MT/s" },
+            { name: "Corsair Vengeance RGB Pro 32GB DDR4 RAM", price: "₱5,252.00", img: "https://down-ph.img.susercontent.com/file/11a8d75162ce215a53f086fc9cbbcf6f@resize_w450_nl.webp", memorytype: "DDR4", amount: "2x16GB", memoryspeed: "3600MHz", xmp: "Supports XMP 2.0", storage: "32GB RAM", testedspeed: "3200 MT/s" },
+            { name: "Team Elite TForce Delta 16GB 3200MHz DDR4 RGB", price: "₱2,315.00", img: "https://easypc.com.ph/cdn/shop/products/Team_Elite_TForce_Delta_16gb_White_2048x2048.jpg", memorytype: "DDR4", amount: "1x16GB", memoryspeed: "3200MHz", xmp: "Supports XMP 2.0", storage: "16GB RAM", testedspeed: "3200 MT/s" },
+            { name: "TeamGroup T-Force Vulcan Z 8GB (1x8GB) DDR4 3200MHz", price: "₱1,000.00", img: "https://gameone.ph/media/catalog/product/cache/6b7f71e8a69cca11592e8fb63d21ba86/t/e/teamgroup-vulcan-z-1x8gb-3200mhz-ddr4-gray-heatsink-1.jpg", memorytype: "DDR4", amount: "1x8GB", memoryspeed: "3200MHz", xmp: "Supports XMP 2.0", storage: "8GB RAM", testedspeed: "3200 MT/s" }
           ],
           gpus: [
-            { name: "Galax NVIDIA GeForce GTX 1650 EX Plus", price: "₱8,550.00", img: "https://easypc.com.ph/cdn/shop/products/Galax_GTX_1650_EX_Plus_1-Click_OC-a_2048x2048.jpg" }
+            { name: "GIGABYTE GeForce RTX™ 5090 GAMING OC", price: "₱148,800.00", img: "https://pcx.com.ph/cdn/shop/files/VC-GIGABYTE-RTX5090-GAMING-OC-32GB-GDDR7-512BIT-1.jpg?v=1741240701&width=1600", memory: "32 GB, GDDR7, 512-bit", dlss: "DLSS 4", openglversion: "OpenGL Ver 4.6", directx: "DirectX 12 API", coreclock: "2550 MHz", coolingsystem: "WINDFORCE", },
+            { name: "GIGABYTE GeForce RTX™ 4090 GAMING OC", price: "₱115,000.00", img: "https://netcodex.ph/wp-content/uploads/2023/02/58dc0a3c21f42efc126dad5f7bf70e8b-600x600.png.webp", memory: "32 GB, GDDR7, 512-bit", dlss: "DLSS 3", openglversion: "OpenGL Ver 4.6", directx: "DirectX 12 API", coreclock: "2550 MHz", coolingsystem: "WINDFORCE", },
+            { name: "GIGABYTE NVIDIA® GeForce RTX™ 3060 Gaming OC", price: "₱20,000.00", img: "https://easypc.com.ph/cdn/shop/products/GigabyteRtx3060GamingOCR2.0GV-N3060GAMING-OC-12GD-2.012gb192bitGDdr6GamingVideocardLHR-a_2048x2048.jpg?v=1623739849", memory: "12 GB, GDDR6, 192-bit", dlss: "DLSS 2", openglversion: "OpenGL Ver 4.6", directx: "DirectX 12 API", coreclock: "1837 MHz", coolingsystem: "WINDFORCE 2X", },
+            { name: "Galax NVIDIA GeForce GTX 1650 EX Plus", price: "₱8,550.00", img: "https://easypc.com.ph/cdn/shop/products/Galax_GTX_1650_EX_Plus_1-Click_OC-a_2048x2048.jpg", memory: "4 GB, GDDR5, 128-bit", dlss: "Not Supported", openglversion: "OpenGL Ver 4.6", directx: "DirectX 12 API", coreclock: "1740 MHz", coolingsystem: "Single Fan(EX Plus Cooling Solution)", },
+
           ],
           prebuilt: [
             { name: "Core i3 12100 / H610 / 8GB DDR4 / 256GB SSD", price: "₱14,795.00", img: "https://easypc.com.ph/cdn/shop/files/Core_i3_12100_H610_8GB_DDR4_256GB_SSD_PC_Case_M-ATX_with_700W_2048x2048.png" }
           ]
         };
-      
+
         Object.keys(products).forEach(category => {
           const container = document.querySelector(`#${category} .products`);
           if (!container) {
             console.error(`Container for category ${category} not found!`);
             return;
           }
-      
+
           products[category].forEach(product => {
             const productCard = document.createElement("div");
             productCard.classList.add("product-card");
-            productCard.innerHTML = `
-              <img src="${product.img}" alt="${product.name}">
-              <h3>${product.name}</h3>
-              <p>${product.price}</p>
-              <a href="Transaction.html?name=${encodeURIComponent(product.name)}&image=${encodeURIComponent(product.img)}&price=${encodeURIComponent(product.price)}" class="buy-now-btn">
 
-                <button>Buy Now</button>
-              </a>
+            let productParams = `?name=${encodeURIComponent(product.name)}&image=${encodeURIComponent(product.img)}&price=${encodeURIComponent(product.price)}`;
+
+            // Check if it's a CPU product
+            if (product.architecture) {
+              productParams += `&architecture=${encodeURIComponent(product.architecture)}&cores=${encodeURIComponent(product.cores)}&threads=${encodeURIComponent(product.threads)}&maxturbofrequency=${encodeURIComponent(product.maxturbofrequency)}&sockettype=${encodeURIComponent(product.sockettype)}&overclockable=${encodeURIComponent(product.overclockable)}`;
+            }
+
+            // Check if it's a GPU product
+            if (product.memory) {
+              productParams += `&memory=${encodeURIComponent(product.memory)}&dlss=${encodeURIComponent(product.dlss)}&openglversion=${encodeURIComponent(product.openglversion)}&directx=${encodeURIComponent(product.directx)}&coreclock=${encodeURIComponent(product.coreclock)}&coolingsystem=${encodeURIComponent(product.coolingsystem)}`;
+            }
+            
+            // Check if it's a RAM produkto hehehehe
+            if(product.memoryspeed) {
+              productParams += `&memorytype=${encodeURIComponent(product.memorytype)}&amount=${encodeURIComponent(product.amount)}&memoryspeed=${encodeURIComponent(product.memoryspeed)}&xmp=${encodeURIComponent(product.xmp)}&storage=${encodeURIComponent(product.storage)}&testedspeed=${encodeURIComponent(product.testedspeed)}`
+  }
+
+            // Creating product card with dynamic "Buy Now" button
+            productCard.innerHTML = `
+            <img src="${product.img}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>${product.price}</p>
+            <a href="Transaction.html${productParams}" class="buy-now-btn">
+            <button>Buy Now</button>
+            </a>
             `;
+
             container.appendChild(productCard);
           });
         });
