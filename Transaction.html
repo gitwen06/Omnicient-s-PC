@@ -99,7 +99,7 @@
         <header>
             <section class="nav-wrapper">
                 <nav id="nav_1">
-                    <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo">
+                    <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo" style="max-width: 150px; height: auto;">
                 </nav>
             </section>
             <nav id="nav_2">
@@ -135,11 +135,36 @@
                 <textarea id="address" name="address" required></textarea>
 
                 <label for="payment">Payment Method:</label>
-                <select id="payment" name="payment">
+                <select id="payment" name="payment" required>
                     <option value="credit_card">Credit Card</option>
                     <option value="paypal">PayPal</option>
                     <option value="cash_on_delivery">Cash on Delivery</option>
                 </select>
+
+                <!-- Additional fields for payment methods -->
+                <div id="payment-details" style="display: none; margin-top: 20px;">
+                    <!-- Credit Card Fields -->
+                    <div id="credit-card-fields" style="display: none;">
+                        <label for="card-number">Card Number:</label>
+                        <input type="text" id="card-number" name="card-number" placeholder="Enter your card number">
+
+                        <label for="expiry-date">Expiry Date:</label>
+                        <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY">
+
+                        <label for="cvv">CVV:</label>
+                        <input type="text" id="cvv" name="cvv" placeholder="Enter CVV">
+                    </div>
+
+                    <!-- PayPal Fields -->
+                    <div id="paypal-fields" style="display: none;">
+                        <p>You will be redirected to PayPal to complete your purchase.</p>
+                    </div>
+
+                    <!-- Cash on Delivery Fields -->
+                    <div id="cod-fields" style="display: none;">
+                        <p>Cash on Delivery selected. Please ensure the shipping address is correct.</p>
+                    </div>
+                </div>
 
                 <button type="submit">Place Order</button>
             </form>
@@ -170,6 +195,16 @@
                 <p>XMP Support: <span class="xmp"></span></p>
                 <p>Total Storage: <span class="storage"></span></p>
             </section>
+
+            <section id="prebuilt-pc-specifications" class="specifications-container">
+                <p>CPU: <span class="cpu"></span></p>
+                <p>Motherboard: <span class="mobo"></span></p>
+                <p>Graphics Unit: <span class="graphicsunit"></span></p>
+                <p>Installed RAM: <span class="installedram"></span></p>
+                <p>SSD: <span class="ssd"></span></p>
+                <p>Power Unit: <span class="powerunit"></span></p>
+            </section>
+            
 
 
 
@@ -223,6 +258,14 @@
             const storage = params.get("storage");
             const testedspeed = params.get("testedspeed");
 
+            //Pre-Built PCs variables
+            const cpu = params.get("cpu");
+            const mobo = params.get("mobo");
+            const graphicsunit = params.get("graphicsunit");
+            const installedram = params.get("installedram");
+            const ssd = params.get("ssd");
+            const powerunit = params.get("powerunit");
+
 
             const urlParams = new URLSearchParams(window.location.search);
 
@@ -230,25 +273,36 @@
             const isGpuTransaction = urlParams.has("dlss") || urlParams.has("memory") || urlParams.has("coreclock");
             const isCpuTransaction = urlParams.has("cores");
             const isRamTransaction = urlParams.has("memoryspeed");
+            const isPreBuiltPcTransaction = urlParams.has("graphicsunit");
 
             // Hide the CPU or GPU section based on the product type
             const cpuSection = document.getElementById("cpu-specifications");
             const gpuSection = document.getElementById("gpu-specifications");
             const ramsection = document.getElementById("ram-specifications");
+            const prebuiltpcsection = document.getElementById("prebuilt-pc-specifications");
 
             if (isGpuTransaction) {
                 if (cpuSection) cpuSection.style.display = "none";
                 if (ramsection) ramsection.style.display = "none";
+                if (prebuiltpcsection) prebuiltpcsection.style.display= "none";
             }
 
             if (isCpuTransaction) {
                 if (gpuSection) gpuSection.style.display = "none";
                 if (ramsection) ramsection.style.display = "none";
+                if (prebuiltpcsection) prebuiltpcsection.style.display = "none";
             }
 
             if (isRamTransaction) {
                 if (cpuSection) cpuSection.style.display = "none";
                 if (gpuSection) gpuSection.style.display = "none";
+                if (prebuiltpcsection) prebuiltpcsection.style.display = "none";
+            }
+
+            if (isPreBuiltPcTransaction) {
+                if (cpuSection) cpuSection.style.display = "none";
+                if (gpuSection) gpuSection.style.display = "none";
+                if (ramsection) ramsection.style.display = "none";
             }
 
 
@@ -288,6 +342,15 @@
                     document.querySelector(".storage").textContent = storage;
                     document.querySelector(".testedspeed").textContent = testedspeed;
                 }
+
+                if (prebuiltpcsection) {
+                    document.querySelector(".cpu").textContent = cpu;
+                    document.querySelector(".mobo").textContent = mobo;
+                    document.querySelector(".graphicsunit").textContent = graphicsunit;
+                    document.querySelector(".installedram").textContent = installedram;
+                    document.querySelector(".ssd").textContent = ssd;
+                    document.querySelector(".powerunit").textContent = powerunit;
+                }
             }
 
             // Order form submission
@@ -296,6 +359,35 @@
                 alert("Order placed successfully!");
                 window.location.href = "shop.html";
             });
+
+            // Payment method selection
+            const paymentSelect = document.getElementById("payment");
+            const paymentDetails = document.getElementById("payment-details");
+            const creditCardFields = document.getElementById("credit-card-fields");
+            const paypalFields = document.getElementById("paypal-fields");
+            const codFields = document.getElementById("cod-fields");
+
+            // Function to update payment fields based on the selected payment method
+            function updatePaymentFields() {
+                paymentDetails.style.display = "block";
+                creditCardFields.style.display = "none";
+                paypalFields.style.display = "none";
+                codFields.style.display = "none";
+
+                if (paymentSelect.value === "credit_card") {
+                    creditCardFields.style.display = "block";
+                } else if (paymentSelect.value === "paypal") {
+                    paypalFields.style.display = "block";
+                } else if (paymentSelect.value === "cash_on_delivery") {
+                    codFields.style.display = "block";
+                }
+            }
+
+            // Listen for changes in the payment method dropdown
+            paymentSelect.addEventListener("change", updatePaymentFields);
+
+            // Trigger the update function on page load to handle the default selection
+            updatePaymentFields();
         });
     </script>
     </section>

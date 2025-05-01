@@ -23,32 +23,44 @@
 }
  
   /* Nav-bars */
+  #indeximg {
+    margin-right: 1000px;
+    position: relative; /* Changed from fixed to relative */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  #nav_2 img {
+    background-color: #303030;
+    border-radius: 22px;
+
+  }
+
+  #indeximg {
+    margin-right: 1000px;
+  }
+  
   #nav_1 {
     display: flex;
-    background-color: #fff;
-    height: 55px;
+    height: 60px;
     position: fixed;
     top: 0;
     z-index: 10;
     width: 100%
   }
-
-  .navbar img {
-
-    height: 75px; /* Adjust to fit the navbar */
-    width: auto; /* Maintain aspect ratio */
-    max-width: 100%; /* Prevents it from overflowing */
-    object-fit: contain; /* Ensures it scales properly */
-}
-  
-
+  #nav_1 img {
+    background-color: #303030;
+    border-radius: 22px;
+  }
   
   #nav_2 {
-    margin-top: 10px;
-    width: 100%;
-    font-family: "GeForce Bold Alt";
+    display: flex;
+    background-color: #fff;
+    height: 60px;
     position: fixed;
+    top: 0;
     z-index: 10;
+    width: 100%
   }
   
   /* NAV LIST ITEMS */

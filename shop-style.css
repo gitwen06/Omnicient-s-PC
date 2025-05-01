@@ -8,6 +8,11 @@ body {
 }
 
 /* Navbar */
+#nav_2 img {
+    margin-top: 2px;
+    margin-right: 1000px;
+}
+
 #nav_2 {
     display: flex;
     justify-content: center;
@@ -18,7 +23,7 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    margin-top: 54px;
+    height: 70px;
 }
 
 #list-1 {

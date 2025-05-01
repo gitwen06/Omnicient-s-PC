@@ -52,11 +52,6 @@ body {
   font-weight: normal;
 }
 
-
-
-
-
-
 .product-info img {
   width: 220px;
   height: auto;
@@ -115,24 +110,58 @@ body {
   margin-bottom: 10px;
 }
 
+#payment-details {
+  margin-top: 20px;
+  padding: 15px;
+  background: #333;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#payment-details label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  color: aliceblue;
+}
+
+#payment-details input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: #222;
+  color: white;
+}
+
+#payment-details p {
+  color: aliceblue;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
 #main-footer {
   position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;
   background: #222;
-  padding: 20px;
+  padding: 10px; /* Reduced padding to lessen height */
+  font-size: 14px; /* Adjusted font size for smaller text */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for separation */
 }
 
 .footer-link {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 10px; /* Reduced gap between links */
 }
 
 .footer-link a {
   color: #fff;
   text-decoration: none;
+  font-size: 14px; /* Adjusted font size */
 }
 
 .footer-link a:hover {
@@ -140,6 +169,11 @@ body {
 }
 
 .logo img {
-  max-width: 150px;
+  max-width: 60px; /* Adjusted logo size for a smaller footer */
   height: auto;
+  margin-bottom: 5px; /* Reduced spacing below the logo */
 }
+
+
+
+

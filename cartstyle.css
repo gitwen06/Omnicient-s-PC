@@ -1,0 +1,220 @@
+.container {
+    transition: transform 0.5s ease;
+}
+
+
+.nav-cart {
+    margin-top: 25px;
+    margin-right: 25px;
+    cursor: pointer;
+}
+.cartTab {
+    margin-top: 70px;
+    width: 400px;
+    background-color: #494949;
+    color: aliceblue;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateX(100%); /* Hide it off-screen to the right */
+    transition: transform 0.5s ease;
+    display: grid;
+    grid-template-rows: 70px 1fr 70px;
+    z-index: 1000;
+}
+
+body.showCart .cartTab {
+    inset: 0 0 0 auto;
+}
+body.showCart .container {
+    transform: translateX(-250px);
+    transition: transform 0.5s ease;
+}
+body.showCart .cartTab {
+    transform: translateX(0); /* Slide it into view */
+}
+
+
+.cartTab h1 {
+    padding: 20px;
+    margin: 0;
+    font-weight: 300;
+}
+.cartTab .btn {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.cartTab .btn .checkOut {
+    background-color: #76b900;  
+    border-radius: 10px;
+}
+.cartTab .btn button {
+    color: black;
+}
+.cartTab .btn .close {
+    border-radius: 10px;
+}
+.cartTab .btn button:hover {
+    transform: translateY(-10px);
+    transition: transform 0.5s ease;
+    color: aqua;
+}
+.cartTab .listCart .item img{
+    width: 100%;
+}
+.cartTab .listCart .item {
+    display: grid;
+    grid-template-columns: 70px 150px 50px 1fr;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+}
+.cartTab .listCart span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: aliceblue;
+    color: black;
+    border-radius: 50%;
+    cursor: pointer;
+    
+}
+.cartTab .listCart span:nth-child(2) {
+    background-color: transparent;
+    color: white;
+}
+.cartTab .listCart .item:nth-child(even) {
+    background-color: #202020;
+}
+.listCart {
+    overflow: auto;
+}
+
+.total-price {
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #333;
+  color: #fff;
+}
+
+/* Style for the confirmation dialog */
+.confirmation-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* Style for the dialog content */
+.dialog-content {
+  background: #494949; /* Match the cartTab background */
+  color: aliceblue; /* Match the cartTab text color */
+  padding: 30px;
+  border-radius: 15px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Add a fade-in animation for the dialog */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Style for the dialog title */
+.dialog-content h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #76b900; /* Highlighted green color */
+}
+
+/* Style for the form elements */
+.dialog-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.dialog-content input,
+.dialog-content textarea,
+.dialog-content select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #333; /* Dark background for inputs */
+  color: aliceblue; /* Match text color */
+  font-size: 14px;
+}
+
+.dialog-content input:focus,
+.dialog-content textarea:focus,
+.dialog-content select:focus {
+  outline: none;
+  border-color: #76b900; /* Highlight border on focus */
+}
+
+/* Style for the buttons */
+.dialog-content button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dialog-content .confirm-btn {
+  background: #76b900; /* Green for confirm */
+  color: white;
+}
+
+.dialog-content .confirm-btn:hover {
+  background: #5a8e00;
+  transform: scale(1.05);
+}
+
+.dialog-content .cancel-btn {
+  background: #ff4d4d; /* Red for cancel */
+  color: white;
+}
+
+.dialog-content .cancel-btn:hover {
+  background: #e63939;
+  transform: scale(1.05);
+}
+
+/* Style for the discard button */
+.cartTab .listCart .discard {
+    background-color: #ff4d4d;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .cartTab .listCart .discard:hover {
+    background-color: #ff1a1a;
+    transform: scale(1.1);
+  }

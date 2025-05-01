@@ -4,13 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="./css/GeForceFont/">
   <link rel="stylesheet" href="stylesheet.css">
   <link rel="stylesheet" href="all.min.css">
   <link rel="stylesheet" href="hover.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="cartstyle.css">
   <script type="module" src="login.js"></script>
   <script type="module" src="index.js"></script>
+  <script type="module" src="cartsystem.js"></script>
   <link rel="stylesheet" href="media.css">
   <link rel="stylesheet" href="shop-style.css">
   <title>Omnicient's PC Official Site: Graphics Cards, CPUs, RAM, Pre-built PCs</title>
@@ -33,26 +36,28 @@
       display: block;
       margin: 0 auto;
     }
+  
   </style>
 </head>
 
-<body>
-  <section class="container landscape">
+<body class="">
+  <section class="container_landscape">
     <header>
-      <section class="nav-wrapper">
-        <nav id="nav_1">
-          <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo">
-        </nav>
-      </section>
       <nav id="nav_2">
         <ul id="list-1">
-          <h2><a href="#" class="title">OMNISCIENT'S PC</a></h2>
+          <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png">
           <li><a href="index.html" class="homepage">Home</a></li>
+          <div class="nav-cart">
+            <i id="cart-icon" class="fa fa-shopping-cart fa-lg"></i>
+            <span id="cart-count" class="cart-badge">0</span>
+          </div>
           <li id="loginNav"><a href="Login.html" class="Log in">Log In</a></li>
           <li id="userNav" style="display: none;"><span id="usernameDisplay"></span></li>
           <li id="logoutNav" style="display: none;"><a href="#" id="logoutLink">Log Out</a></li>
         </ul>
       </nav>
+      
+
     </header>
     <section id="products-section" class="landscape-view">
       <div id="cpus" class="section">
@@ -74,6 +79,32 @@
       </div>
     </section>
 
+    <div class="cartTab">
+      <h1>Shopping Cart</h1>
+      <div class="listCart">
+        <div class ="item">
+          <div class = "image">
+            <img src="https://m.media-amazon.com/images/I/61O5IUjSDSL._AC_SX425_PIbundle-2,TopRight,0,0_SH20_.jpg">
+          </div>
+          <div class = "name">
+            NAME
+          </div>
+          <div class = "totalPrice">
+             500
+          </div>
+          <div class = "quantity">
+            <span class="minus"><</span>
+            <span>1</span>
+            <span class="plus">></span>
+          </div>
+        </div>
+
+      </div>
+      <div class="btn">
+        <button class="close">Close</button>
+        <button class="checkOut">Check Out</button>
+      </div>
+    </div>
     <footer id="main-footer">
       <section class="logo">
         <img src="images/Omniscient_s_PC_LOGO__1_-removebg-preview.png" alt="Omniscient's PC Logo">
@@ -85,6 +116,7 @@
       </p>
       <section class="copyright">Copyright &copy; 2024 Omniscient's PC</section>
     </footer>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const products = {
@@ -111,8 +143,11 @@
 
           ],
           prebuilt: [
-            { name: "Core i3 12100 / H610 / 8GB DDR4 / 256GB SSD", price: "₱14,795.00", img: "https://easypc.com.ph/cdn/shop/files/Core_i3_12100_H610_8GB_DDR4_256GB_SSD_PC_Case_M-ATX_with_700W_2048x2048.png" }
-          ]
+            { name: "Intel Core i7-1400KF Customized Desktop Gaming PC Monster Hunter Edition", price: "₱115,995.00--₱134,990.00", img:"https://gameone.ph/media/catalog/product/cache/6b7f71e8a69cca11592e8fb63d21ba86/m/o/monster_hunter_wilds_pc_build.jpg", cpu:"Intel Core I7-14700KF", mobo:"MSI MPG Z790 EDGE", graphicsunit:"MSI RTX 4060Ti 8G", installedram:"G.Skill Trident Z5 Neo 32GB", ssd:"Adata 1TB Legend 960 MAX", powerunit:"MSI MAG A750GL 750W" },
+            { name: "PCX GFH FALCON FURY GeForce® GTX 1650 OC Gaming Desktop", price: "₱30,500.00", img: "https://pcx.com.ph/cdn/shop/files/GFH_FALCON_FURY.jpg?v=1737005682&width=1600", cpu: "Intel Core i3-13100F", mobo: "GIGABYTE H610M-H DDR4", graphicsunit: "GIGABYTE GeForce GTX 1650 OC", installedram: "16GB Kingston FURY Beast DDR4 RGB (2x8GB)", ssd: "500GB Kingston NV2 PCIe 4.0 NVMe", powerunit: "SilverStone ST50F-ES230 500W 80+" },
+            { name: "HP Pavilion Gaming Desktop 10th Gen Intel Hexa-core i5-10400F", price: "EGP 55,744.00", img: "https://m.media-amazon.com/images/I/71--K0+vP1L._AC_SL1500_.jpg", cpu: "Intel Core i5-10400F (Base Clock 2.9GHz, Max Boost Clock Up to 4.3GHz, 12MB SmartCache, 12 Threads)", mobo: "Intel B460", graphicsunit: "NVIDIA GeForce RTX 3060 12GB", installedram: "16GB DDR4", ssd: "1TB SSD", powerunit: "Seasonic S12III 500W" }
+
+            ]
         };
 
         Object.keys(products).forEach(category => {
@@ -142,6 +177,9 @@
             if(product.memoryspeed) {
               productParams += `&memorytype=${encodeURIComponent(product.memorytype)}&amount=${encodeURIComponent(product.amount)}&memoryspeed=${encodeURIComponent(product.memoryspeed)}&xmp=${encodeURIComponent(product.xmp)}&storage=${encodeURIComponent(product.storage)}&testedspeed=${encodeURIComponent(product.testedspeed)}`
   }
+            if(product.mobo) {
+              productParams += `&cpu=${encodeURIComponent(product.cpu)}&mobo=${encodeURIComponent(product.mobo)}&graphicsunit=${encodeURIComponent(product.graphicsunit)}&installedram=${encodeURIComponent(product.installedram)}&ssd=${encodeURIComponent(product.ssd)}&powerunit=${encodeURIComponent(product.powerunit)}`;
+            }
 
             // Creating product card with dynamic "Buy Now" button
             productCard.innerHTML = `
@@ -150,7 +188,11 @@
             <p>${product.price}</p>
             <a href="Transaction.html${productParams}" class="buy-now-btn">
             <button>Buy Now</button>
+             
             </a>
+            <button class ="add-to-cart-btn">
+               <i class="fas fa-shopping-cart"></i>
+            </button>
             `;
 
             container.appendChild(productCard);
