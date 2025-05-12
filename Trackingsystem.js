@@ -45,4 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
   subtotalElement.textContent = `₱${subtotal.toLocaleString()}`;
   taxElement.textContent = `₱${tax.toLocaleString()}`;
   totalElement.textContent = `₱${total.toLocaleString()}`;
+
+  // Toggle the visibility of the navigation links
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("list-2");
+
+  menuToggle.addEventListener("click", function () {
+    navLinks.classList.toggle("active");
+  });
 });

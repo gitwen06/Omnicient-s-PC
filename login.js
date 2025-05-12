@@ -101,17 +101,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const userNav = document.getElementById("userNav");
     const logoutNav = document.getElementById("logoutNav");
 
-    // Check if user is logged in
+    // Check if the user is logged in
     const loggedInUser = localStorage.getItem("loggedInUser");
 
     if (loggedInUser) {
         usernameDisplay.textContent = loggedInUser;
-        loginNav.style.display = "none";  // Hide "Log In"
+        loginNav.style.display = "none"; // Hide "Log In"
         userNav.style.display = "inline"; // Show username
         logoutNav.style.display = "inline"; // Show "Log Out"
     } else {
-        logoutNav.style.display = "none"; // Hide logout button if no user
+        loginNav.style.display = "inline"; // Ensure "Log In" is visible
+        userNav.style.display = "none"; // Hide username
+        logoutNav.style.display = "none"; // Hide "Log Out"
     }
+
+    // Ensure Home and Shop buttons are always visible
+    const homeNav = document.querySelector(".homepage");
+    const shopNav = document.querySelector(".shop");
+
+    if (homeNav) homeNav.style.display = "inline";
+    if (shopNav) shopNav.style.display = "inline";
 
     // Logout functionality
     logoutNav.addEventListener("click", async function (event) {

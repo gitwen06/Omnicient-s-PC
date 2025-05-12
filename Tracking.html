@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order Tracking</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="shop-style.css">
-  <link rel="stylesheet" href="Trackingstyle.css">
-  <link rel="stylesheet" href="media.css">
+  <link rel="stylesheet" href="Trackingstyle.css" >
   <link rel="stylesheet" href="hover.css">
   <link rel="stylesheet" href="style.css">
-<script src="Trackingsystem.js"></script>
+  <script type="module" src="Trackingsystem.js"></script>
   <script type="module" src="login.js"></script>
   <script type="module" src="index.js"></script>
   <style>
@@ -348,14 +348,17 @@
 <body>
   <header>
     <nav id="nav_2">
-      <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo">
-      <ul id="list-1">
-        <li><a href="index.html" class="homepage">Home</a></li>
-        <li><a href="shop.html" class="shop">Shop</a></li>
-        <li id="loginNav"><a href="Login.html" class="Log in">Log In</a></li>
-        <li id="userNav" style="display: none;"><span id="usernameDisplay"></span></li>
-        <li id="logoutNav" style="display: none;"><a href="#" id="logoutLink">Log Out</a></li>
-      </ul>
+        <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo">
+        <button id="menu-toggle" class="hamburger-menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul id="list-2">
+            <li><a href="index.html" class="homepage">Home</a></li>
+            <li><a href="shop.html" class="shop">Shop</a></li>
+            <li id="loginNav"><a href="Login.html" class="Log in">Log In</a></li>
+            <li id="userNav" style="display: none;"><span id="usernameDisplay"></span></li>
+            <li id="logoutNav" style="display: none;"><a href="#" id="logoutLink">Log Out</a></li>
+        </ul>
     </nav>
   </header>
 
@@ -484,6 +487,16 @@
       document.getElementById("subtotal").textContent = `₱${subtotal.toLocaleString()}`;
       document.getElementById("tax").textContent = `₱${tax.toLocaleString()}`;
       document.getElementById("total").textContent = `₱${total.toLocaleString()}`;
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById("menu-toggle");
+        const navLinks = document.getElementById("list-2");
+
+        // Toggle the visibility of the navigation links
+        menuToggle.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+        });
     });
   </script>
 </body>

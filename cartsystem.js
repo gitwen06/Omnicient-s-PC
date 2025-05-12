@@ -235,4 +235,27 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error("Check Out button not found!");
   }
+
+  // Menu toggle functionality
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("list-1");
+
+  // Toggle the visibility of the navigation links
+  menuToggle.addEventListener("click", function () {
+    navLinks.classList.toggle("active");
+  });
+
+  // Pop-up navigation menu functionality
+  const popupNav = document.getElementById("popup-nav");
+  const closePopup = document.getElementById("close-popup");
+
+  // Show the pop-up navigation menu
+  menuToggle.addEventListener("click", function () {
+    popupNav.classList.add("active");
+  });
+
+  // Close the pop-up navigation menu
+  closePopup.addEventListener("click", function () {
+    popupNav.classList.remove("active");
+  });
 });

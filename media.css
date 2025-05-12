@@ -6,6 +6,9 @@
     #nav_2 ul li, .base-image{
       display: none;
     }
+    #nav_2 img{
+      display: none;
+    }
     #list-1 h2 {
       margin-left: 20px;
       margin-top: 20px;

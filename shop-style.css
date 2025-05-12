@@ -10,9 +10,9 @@ body {
 /* Navbar */
 #nav_2 {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(90deg, #000, #303030); /* Gradient background */
+    justify-content: space-between; /* Space out the logo and navigation links */
+    align-items: center; /* Vertically align items */
+    background: linear-gradient(90deg, #000, #303030);
     padding: 10px 20px;
     border-bottom: 3px solid #76b900;
     position: fixed;
@@ -20,25 +20,29 @@ body {
     width: 100%;
     height: 70px;
     z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     animation: fadeIn 0.5s ease-in-out;
 }
 
 #nav_2 img {
-    height: 50px; /* Adjusted logo size */
-    margin-right: 20px;
+    height: 40px; /* Adjust the height to fit the navbar */
+    width: auto; /* Maintain aspect ratio */
+    max-width: 100%; /* Prevent the image from overflowing */
+    object-fit: contain; /* Ensure the image fits within its container */
+    margin-right: 10px; /* Add spacing between the image and other elements */
+    display: inline-block; /* Ensure it behaves like an inline element */
 }
 
 #list-1 {
     list-style: none;
     display: flex;
-    gap: 30px; /* Increased spacing between items */
+    gap: 30px;
     align-items: center;
     margin: 0;
     padding: 0;
 }
 
-#list-1 h2 a, #list-1 li a {
+#list-1 li a {
     text-decoration: none;
     color: #fff;
     font-size: 18px;
@@ -46,9 +50,9 @@ body {
     transition: color 0.3s, transform 0.3s;
 }
 
-#list-1 h2 a:hover, #list-1 li a:hover {
-    color: #76b900; /* Highlight color */
-    transform: scale(1.1); /* Slight zoom effect */
+#list-1 li a:hover {
+    color: #76b900;
+    transform: scale(1.1);
 }
 
 .nav-cart {
@@ -70,10 +74,21 @@ body {
     font-size: 24px;
 }
 
+/* Hamburger Menu Button */
+.hamburger-menu {
+    display: none; /* Hide by default */
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001; /* Ensure it appears above other elements */
+}
+
 /* Products Section */
 #products-section {
     max-width: 1200px;
-    margin: 100px auto 50px; /* Adjusted margin to prevent overlap with fixed navbar */
+    margin: 100px auto 50px;
     padding: 20px;
     text-align: center;
 }
@@ -93,24 +108,24 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 30px; /* Increased spacing between cards */
-    margin-top: 120px; /* Prevent overlap with navbar */
+    gap: 30px;
+    margin-top: 120px;
 }
 
 .product-card {
-    background: linear-gradient(145deg, #1e1e1e, #2a2a2a); /* Gradient background */
+    background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
     padding: 20px;
     border-radius: 15px;
     width: 230px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s, box-shadow 0.3s;
     text-align: center;
     animation: fadeIn 0.5s ease-in-out;
 }
 
 .product-card:hover {
-    transform: translateY(-10px); /* Lift effect */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* Stronger shadow on hover */
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
 }
 
 .product-card img {
@@ -145,13 +160,13 @@ body {
 
 .product-card button:hover {
     background: #8cd400;
-    transform: scale(1.05); /* Slight zoom effect */
+    transform: scale(1.05);
 }
 
 /* Footer */
 #main-footer {
-    background: linear-gradient(90deg, #1e1e1e, #2a2a2a); /* Gradient background */
-    padding: 20px 20px; /* Reduced padding from 30px to 20px */
+    background: linear-gradient(90deg, #1e1e1e, #2a2a2a);
+    padding: 20px 20px;
     text-align: center;
     color: #fff;
     margin-top: 50px;
@@ -169,7 +184,7 @@ body {
 
 .footer-link a:hover {
     color: #8cd400;
-    transform: scale(1.1); /* Slight zoom effect */
+    transform: scale(1.1);
 }
 
 #main-footer .logo img {
@@ -186,4 +201,161 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Responsive Design */
+
+/* For tablets (max-width: 768px) */
+@media (max-width: 768px) {
+    #list-1 {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .products {
+        gap: 20px;
+    }
+
+    .product-card {
+        width: 180px;
+    }
+
+    .product-title {
+        font-size: 24px;
+    }
+
+    #nav_2 {
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    .nav-cart {
+        font-size: 16px;
+    }
+
+    #nav_2 img {
+        height: 30px; /* Reduce the height for smaller screens */
+        margin-right: 5px; /* Adjust spacing */
+    }
+}
+
+/* Responsive Design for Navbar */
+@media (max-width: 720px) {
+    #list-1 {
+        display: none; /* Hide the navigation links by default */
+        flex-direction: column;
+        background: #000; /* Background for the dropdown menu */
+        position: absolute;
+        top: 70px; /* Below the navbar */
+        right: 0;
+        width: 100%;
+        padding: 10px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    #list-1 li {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    #list-1 li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    #list-1 li a:hover {
+        color: #76b900; /* Highlight color on hover */
+    }
+
+    #list-1.active {
+        display: flex; /* Show the navigation links when active */
+    }
+
+    .hamburger-menu {
+        display: block; /* Show the hamburger menu button */
+    }
+}
+
+/* For phones (max-width: 480px) */
+@media (max-width: 480px) {
+    .products {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .product-card {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .product-title {
+        font-size: 20px;
+    }
+
+    #nav_2 img {
+        display: none; /* Hide the logo image on phone screens */
+    }
+
+    #list-1 {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .nav-cart {
+        font-size: 14px;
+    }
+
+    #main-footer {
+        font-size: 14px;
+    }
+}
+
+/* Show the navigation links when active */
+#list-1.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 70px; /* Position it below the navbar */
+    right: 0;
+    width: 100%; /* Full width for the dropdown */
+    background: #000; /* Background color for the dropdown */
+    padding: 10px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Add a shadow for better visibility */
+    z-index: 1000; /* Ensure it appears above other elements */
+    animation: slideDown 0.3s ease-in-out; /* Add a slide-down animation */
+}
+
+/* Slide-down animation for the dropdown */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style for the dropdown links */
+#list-1 li {
+    text-align: center;
+    margin: 10px 0;
+}
+
+#list-1 li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+#list-1 li a:hover {
+    color: #76b900; /* Highlight color on hover */
 }

@@ -8,17 +8,25 @@ body {
   flex-direction: column;
 }
 
+/* Ensure consistent box-sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 .transaction-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   gap: 40px;
-  max-width: 1000px;
-  margin: 50px auto 150px; /* Increased bottom margin to 150px */
+  max-width: 1000px; /* Restrict maximum width */
+  margin: 50px auto; /* Center the container horizontally */
   padding: 30px;
   background: #222;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box; /* Ensure padding is included in width */
 }
 
 .specifications-container {
@@ -140,15 +148,15 @@ body {
 
 /* Footer */
 #main-footer {
-  background: linear-gradient(90deg, #1e1e1e, #2a2a2a); /* Gradient background */
-  padding: 20px 20px; /* Adjusted padding */
-  text-align: center;
-  color: #fff;
-  margin-top: 50px;
-  border-top: 3px solid #76b900;
-  animation: fadeIn 0.5s ease-in-out;
-  position: relative; /* Changed from fixed to relative */
-  width: 100%;
+    background: linear-gradient(90deg, #1e1e1e, #2a2a2a); /* Gradient background */
+    padding: 20px 20px; /* Adjusted padding */
+    text-align: center;
+    color: #fff;
+    margin-top: 50px;
+    border-top: 3px solid #76b900;
+    animation: fadeIn 0.5s ease-in-out;
+    position: relative; /* Changed from fixed to relative */
+    width: 100%;
 }
 
 .footer-link {
@@ -237,6 +245,77 @@ body {
   font-size: 24px;
 }
 
+/* Responsive Design for Transaction Container */
+@media (max-width: 720px) {
+    .transaction-container {
+        flex-direction: column; /* Stack items vertically */
+        gap: 20px; /* Reduce the gap between sections */
+        padding: 20px; /* Adjust padding */
+        width: calc(100% - 40px); /* Ensure the container fits within the screen with padding */
+        margin: 20px auto; /* Center the container horizontally */
+        background: #222; /* Ensure the background spans the full width */
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
 
+    .product-info,
+    .transaction-form {
+        width: 100%; /* Make sections take full width */
+    }
 
+    .specifications-container {
+        width: 100%; /* Make specifications take full width */
+    }
+}
 
+/* Hamburger Menu Button */
+.hamburger-menu {
+    display: none; /* Hide by default */
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001; /* Ensure it appears above other elements */
+}
+
+/* Responsive Design for Navbar */
+@media (max-width: 720px) {
+    .hamburger-menu {
+        display: block; /* Show the hamburger menu button */
+    }
+
+    #list-1 {
+        display: none; /* Hide the navigation links by default */
+        flex-direction: column;
+        background: #000; /* Background for the dropdown menu */
+        position: absolute;
+        top: 70px; /* Below the navbar */
+        right: 0;
+        width: 100%;
+        padding: 10px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    #list-1.active {
+        display: flex; /* Show the navigation links when active */
+    }
+
+    #list-1 li {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    #list-1 li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    #list-1 li a:hover {
+        color: #76b900; /* Highlight color on hover */
+    }
+}
