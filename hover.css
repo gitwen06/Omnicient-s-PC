@@ -37,3 +37,13 @@
   .icon-area i:hover {
     color: #777;
   }
+
+/* General Button Hover Effects */
+button {
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    background-color: #8cd400; /* Lighter green */
+}

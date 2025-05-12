@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="shop-style.css">
     <link rel="stylesheet" href="transaction-style.css">
+    <link rel="stylesheet" href="media.css">
+    <script type="module" src="login.js"></script>
+    <script type="module" src="index.js"></script>
     <style>
         .transaction-container {
             display: flex;
@@ -95,128 +98,98 @@
 </head>
 
 <body>
-    <section class="container landscape">
-        <header>
-            <section class="nav-wrapper">
-                <nav id="nav_1">
-                    <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo" style="max-width: 150px; height: auto;">
+    <div class="content-wrapper">
+        <section class="container landscape">
+            <header>
+                <nav id="nav_2">
+                    <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo">
+                    <ul id="list-1">
+                        <li><a href="index.html" class="homepage">Home</a></li>
+                        <li><a href="shop.html" class="shop">Shop</a></li>
+                        <li id="loginNav"><a href="Login.html" class="Log in">Log In</a></li>
+                        <li id="userNav" style="display: none;"><span id="usernameDisplay"></span></li>
+                        <li id="logoutNav" style="display: none;"><a href="#" id="logoutLink">Log Out</a></li>
+                    </ul>
                 </nav>
-            </section>
-            <nav id="nav_2">
-                <ul id="list-1">
-                    <h2><a href="#" class="title">OMNISCIENT'S PC</a></h2>
-                    <li><a href="shop.html" class="homepage">Back</a></li>
-                    <li><a href="index.html" class="homepage">Home</a></li>
+            </header>
 
-                    <li id="loginNav"><a href="Login.html" class="Log in">Log In</a></li>
-                    <li id="userNav" style="display: none;"><span id="usernameDisplay"></span></li>
-                    <li id="logoutNav" style="display: none;"><a href="#" id="logoutLink">Log Out</a></li>
-                </ul>
-            </nav>
-        </header>
+            <section class="transaction-container">
+                <section class="product-info">
+                    <span class="product-image">
+                        <img src="images/product.jpg" alt="Product Name">
+                    </span>
+                    <span class="product-name">Product Name</span>
+                    <span class="product-price">Product Price</span>
+                </section>
 
-        <section class="transaction-container">
-            <section class="product-info">
-                <span class="product-image">
-                    <img src="images/product.jpg" alt="Product Name">
-                </span>
-                <span class="product-name">Product Name</span>
-                <span class="product-price">Product Price</span>
-            </section>
+                <form id="checkout-form" class="transaction-form">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
 
-            <form id="orderForm" class="transaction-form">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                    <label for="address">Shipping Address:</label>
+                    <textarea id="address" name="address" required></textarea>
 
-                <label for="address">Shipping Address:</label>
-                <textarea id="address" name="address" required></textarea>
+                    <label for="payment">Payment Method:</label>
+                    <select id="payment" name="payment" required>
+                        <option value="cash_on_delivery">Cash on Delivery</option>
+                    </select>
 
-                <label for="payment">Payment Method:</label>
-                <select id="payment" name="payment" required>
-                    <option value="credit_card">Credit Card</option>
-                    <option value="paypal">PayPal</option>
-                    <option value="cash_on_delivery">Cash on Delivery</option>
-                </select>
-
-                <!-- Additional fields for payment methods -->
-                <div id="payment-details" style="display: none; margin-top: 20px;">
-                    <!-- Credit Card Fields -->
-                    <div id="credit-card-fields" style="display: none;">
-                        <label for="card-number">Card Number:</label>
-                        <input type="text" id="card-number" name="card-number" placeholder="Enter your card number">
-
-                        <label for="expiry-date">Expiry Date:</label>
-                        <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY">
-
-                        <label for="cvv">CVV:</label>
-                        <input type="text" id="cvv" name="cvv" placeholder="Enter CVV">
+                    <!-- Additional fields for Cash on Delivery -->
+                    <div id="payment-details" style="margin-top: 20px;">
+                        <div id="cod-fields">
+                            <p>Cash on Delivery selected. Please ensure the shipping address is correct.</p>
+                        </div>
                     </div>
 
-                    <!-- PayPal Fields -->
-                    <div id="paypal-fields" style="display: none;">
-                        <p>You will be redirected to PayPal to complete your purchase.</p>
-                    </div>
+                    <button type="submit" class="confirm-btn">Confirm Purchase</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </form>
 
-                    <!-- Cash on Delivery Fields -->
-                    <div id="cod-fields" style="display: none;">
-                        <p>Cash on Delivery selected. Please ensure the shipping address is correct.</p>
-                    </div>
-                </div>
+                <section id="cpu-specifications" class="specifications-container">
+                    <p>Architecture: <span class="architecture">Example Value</span></p>
+                    <p>Cores: <span class="cores">Example Value</span></p>
+                    <p>Threads: <span class="threads">Example Value</span></p>
+                    <p>Max Turbo Frequency: <span class="maxturbofrequency">Example Value</span></p>
+                    <p>Socket Type: <span class="sockettype">Example Value</span></p>
+                    <p>Overclockable: <span class="overclockable">Example Value</span></p>
+                </section>
 
-                <button type="submit">Place Order</button>
-            </form>
+                <section id="gpu-specifications" class="specifications-container">
+                    <p>Memory: <span class="memory"></span></p>
+                    <p>DLSS: <span class="dlss"></span></p>
+                    <p>OpenGL Version: <span class="openglversion"></span></p>
+                    <p>DirectX Version: <span class="directx"></span></p>
+                    <p>Core Clock: <span class="coreclock"></span></p>
+                    <p>Cooling System: <span class="coolingsystem"></span></p>
+                </section>
 
-            <section id="cpu-specifications" class="specifications-container">
-                <p>Architecture: <span class="architecture">Example Value</span></p>
-                <p>Cores: <span class="cores">Example Value</span></p>
-                <p>Threads: <span class="threads">Example Value</span></p>
-                <p>Max Turbo Frequency: <span class="maxturbofrequency">Example Value</span></p>
-                <p>Socket Type: <span class="sockettype">Example Value</span></p>
-                <p>Overclockable: <span class="overclockable">Example Value</span></p>
+                <section id="ram-specifications" class="specifications-container">
+                    <p>Memory Type: <span class="memorytype"></span></p>
+                    <p>Capacity: <span class="amount"></span></p>
+                    <p>Memory Speed: <span class="memoryspeed"></span></p>
+                    <p>Tested Speed: <span class="testedspeed"></span></p>
+                    <p>XMP Support: <span class="xmp"></span></p>
+                    <p>Total Storage: <span class="storage"></span></p>
+                </section>
+
+                <section id="prebuilt-pc-specifications" class="specifications-container">
+                    <p>CPU: <span class="cpu"></span></p>
+                    <p>Motherboard: <span class="mobo"></span></p>
+                    <p>Graphics Unit: <span class="graphicsunit"></span></p>
+                    <p>Installed RAM: <span class="installedram"></span></p>
+                    <p>SSD: <span class="ssd"></span></p>
+                    <p>Power Unit: <span class="powerunit"></span></p>
+                </section>
             </section>
-
-            <section id="gpu-specifications" class="specifications-container">
-                <p>Memory: <span class="memory"></span></p>
-                <p>DLSS: <span class="dlss"></span></p>
-                <p>OpenGL Version: <span class="openglversion"></span></p>
-                <p>DirectX Version: <span class="directx"></span></p>
-                <p>Core Clock: <span class="coreclock"></span></p>
-                <p>Cooling System: <span class="coolingsystem"></span></p>
-            </section>
-
-            <section id="ram-specifications" class="specifications-container">
-                <p>Memory Type: <span class="memorytype"></span></p>
-                <p>Capacity: <span class="amount"></span></p>
-                <p>Memory Speed: <span class="memoryspeed"></span></p>
-                <p>Tested Speed: <span class="testedspeed"></span></p>
-                <p>XMP Support: <span class="xmp"></span></p>
-                <p>Total Storage: <span class="storage"></span></p>
-            </section>
-
-            <section id="prebuilt-pc-specifications" class="specifications-container">
-                <p>CPU: <span class="cpu"></span></p>
-                <p>Motherboard: <span class="mobo"></span></p>
-                <p>Graphics Unit: <span class="graphicsunit"></span></p>
-                <p>Installed RAM: <span class="installedram"></span></p>
-                <p>SSD: <span class="ssd"></span></p>
-                <p>Power Unit: <span class="powerunit"></span></p>
-            </section>
-            
-
-
-
         </section>
-
-
-
-    </section>
+    </div>
 
     <footer id="main-footer">
         <section class="logo">
-            <img src="images/Omniscient_s_PC_LOGO__1_-removebg-preview.png" alt="Omniscient's PC Logo">
+            <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo">
         </section>
         <p class="footer-link">
             <span><a href="#">Privacy Policy</a></span> |
@@ -284,7 +257,7 @@
             if (isGpuTransaction) {
                 if (cpuSection) cpuSection.style.display = "none";
                 if (ramsection) ramsection.style.display = "none";
-                if (prebuiltpcsection) prebuiltpcsection.style.display= "none";
+                if (prebuiltpcsection) prebuiltpcsection.style.display = "none";
             }
 
             if (isCpuTransaction) {
@@ -354,33 +327,45 @@
             }
 
             // Order form submission
-            document.getElementById("orderForm").addEventListener("submit", function (event) {
+            document.getElementById("checkout-form").addEventListener("submit", function (event) {
                 event.preventDefault();
-                alert("Order placed successfully!");
-                window.location.href = "shop.html";
+
+                // Generate a random order ID
+                const orderId = `ORD-${Math.floor(Math.random() * 1000000)}`;
+
+                // Get user input values
+                const userName = document.getElementById("name").value;
+                const userEmail = document.getElementById("email").value;
+                const userAddress = document.getElementById("address").value;
+
+                // Sanitize the product price to remove formatting (e.g., ₱42,000.00 -> 42000)
+                const sanitizedPrice = parseFloat(productPrice.replace(/[₱,]/g, "")) || 0;
+
+                // Build the URL for Tracking.html
+                const trackingUrl = `Tracking.html?orderId=${orderId}&name=${encodeURIComponent(userName)}&email=${encodeURIComponent(userEmail)}&address=${encodeURIComponent(userAddress)}&products=${encodeURIComponent(JSON.stringify([{
+                    name: productName,
+                    img: productImage,
+                    price: sanitizedPrice
+                }]))}`;
+
+                // Redirect to Tracking.html
+                window.location.href = trackingUrl;
+            });
+
+            // Handle cancel button
+            document.querySelector(".cancel-btn").addEventListener("click", function () {
+                window.location.href = "shop.html"; // Redirect to shop.html
             });
 
             // Payment method selection
             const paymentSelect = document.getElementById("payment");
             const paymentDetails = document.getElementById("payment-details");
-            const creditCardFields = document.getElementById("credit-card-fields");
-            const paypalFields = document.getElementById("paypal-fields");
             const codFields = document.getElementById("cod-fields");
 
             // Function to update payment fields based on the selected payment method
             function updatePaymentFields() {
                 paymentDetails.style.display = "block";
-                creditCardFields.style.display = "none";
-                paypalFields.style.display = "none";
-                codFields.style.display = "none";
-
-                if (paymentSelect.value === "credit_card") {
-                    creditCardFields.style.display = "block";
-                } else if (paymentSelect.value === "paypal") {
-                    paypalFields.style.display = "block";
-                } else if (paymentSelect.value === "cash_on_delivery") {
-                    codFields.style.display = "block";
-                }
+                codFields.style.display = "block";
             }
 
             // Listen for changes in the payment method dropdown
@@ -390,7 +375,6 @@
             updatePaymentFields();
         });
     </script>
-    </section>
 </body>
 
 </html>

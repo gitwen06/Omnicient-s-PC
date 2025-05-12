@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Tracking</title>
+  <link rel="stylesheet" href="shop-style.css">
+  <link rel="stylesheet" href="Trackingstyle.css">
+  <link rel="stylesheet" href="media.css">
+  <link rel="stylesheet" href="hover.css">
+  <link rel="stylesheet" href="style.css">
+<script src="Trackingsystem.js"></script>
+  <script type="module" src="login.js"></script>
+  <script type="module" src="index.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e1e1e;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px; /* Increased width */
+      margin: 50px auto;
+      display: flex;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .main-content {
+      flex: 2;
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .sidebar {
+      flex: 1;
+      background: #333;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      color: #76b900;
+      margin-bottom: 20px;
+    }
+
+    .order-id {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #76b900;
+    }
+
+    .section p {
+      margin: 5px 0;
+      font-size: 16px;
+      color: #ccc;
+    }
+
+    .order-items {
+      border: 1px solid #333;
+      border-radius: 5px;
+      padding: 10px;
+      background: #333;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-bottom: 1px solid #444;
+    }
+
+    .order-item:last-child {
+      border-bottom: none;
+    }
+
+    .order-item img {
+      width: 70px;
+      height: 70px;
+      border-radius: 5px;
+    }
+
+    .order-item .details {
+      flex: 1;
+      margin-left: 15px;
+    }
+
+    .order-item .details span.name {
+      font-size: 18px;
+      font-weight: bold;
+      color: #76b900;
+      display: block;
+    }
+
+    .order-item .details span.quantity {
+      font-size: 14px;
+      color: #ccc;
+      display: block;
+    }
+
+    .order-item .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #8cd400;
+    }
+
+    .order-summary {
+      border: 1px solid #333;
+      border-radius: 5px;
+      padding: 10px;
+      background: #333;
+    }
+
+    .order-summary p {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0;
+    }
+
+    .order-summary p span:last-child {
+      font-weight: bold;
+    }
+
+    .order-summary p.total {
+      font-size: 20px;
+      font-weight: bold;
+      color: #76b900;
+    }
+
+    .progress-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .progress-bar .step {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+      color: #ccc;
+    }
+
+    .progress-bar .step.completed {
+      color: #76b900;
+    }
+
+    .progress-bar .step::before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background: #ccc;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .progress-bar .step.completed::before {
+      background: #76b900;
+    }
+
+    .progress-bar .step span.date-time {
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    .back-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background: #76b900;
+      color: #000;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .back-btn:hover {
+      background: #5a8e00;
+    }
+
+    footer {
+      background: linear-gradient(90deg, #1e1e1e, #2a2a2a);
+      padding: 20px 20px;
+      text-align: center;
+      color: #fff;
+      margin-top: auto;
+      border-top: 3px solid #76b900;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .footer-link a {
+      color: #76b900;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .footer-link a:hover {
+      color: #8cd400;
+      transform: scale(1.1);
+    }
+
+    footer .logo img {
+      width: 120px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .container {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .main-content, .sidebar {
+        flex: none;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      .order-id {
+        font-size: 16px;
+      }
+
+      .section h2 {
+        font-size: 18px;
+      }
+
+      .order-item img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .order-item .details span.name {
+        font-size: 16px;
+      }
+
+      .order-item .details span.quantity {
+        font-size: 12px;
+      }
+
+      .order-item .price {
+        font-size: 16px;
+      }
+
+      .order-summary p {
+        font-size: 14px;
+      }
+
+      .order-summary p.total {
+        font-size: 18px;
+      }
+
+      .progress-bar .step span.date-time {
+        font-size: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 10px;
+      }
+
+      .main-content, .sidebar {
+        padding: 15px;
+      }
+
+      .order-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .order-item img {
+        margin-bottom: 10px;
+      }
+
+      .order-item .details {
+        margin-left: 0;
+      }
+
+      .order-item .details span.name {
+        font-size: 14px;
+      }
+
+      .order-item .details span.quantity {
+        font-size: 12px;
+      }
+
+      .order-item .price {
+        font-size: 14px;
+      }
+
+      .order-summary p {
+        font-size: 12px;
+      }
+
+      .order-summary p.total {
+        font-size: 16px;
+      }
+
+      .progress-bar .step {
+        gap: 8px;
+      }
+
+      .progress-bar .step span.date-time {
+        font-size: 8px;
+      }
+
+      .back-btn {
+        font-size: 14px;
+        padding: 8px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav id="nav_2">
+      <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo">
+      <ul id="list-1">
+        <li><a href="index.html" class="homepage">Home</a></li>
+        <li><a href="shop.html" class="shop">Shop</a></li>
+        <li id="loginNav"><a href="Login.html" class="Log in">Log In</a></li>
+        <li id="userNav" style="display: none;"><span id="usernameDisplay"></span></li>
+        <li id="logoutNav" style="display: none;"><a href="#" id="logoutLink">Log Out</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Main Content -->
+    <div class="main-content">
+      <h1>Order Tracking</h1>
+      <p class="order-id"><strong>Order ID:</strong> <span id="order-id">ORD-123456</span></p>
+
+      <!-- Your Information -->
+      <div class="section">
+        <h2>Your Information</h2>
+        <p><strong>Name:</strong> <span id="user-name">John Doe</span></p>
+        <p><strong>Address:</strong> <span id="user-address">123 Placeholder Street, Manila City</span></p>
+        <p><strong>Email:</strong> <span id="user-email">johndoe@example.com</span></p>
+      </div>
+
+      <!-- Order Items -->
+      <div class="section">
+        <h2>Order Items</h2>
+        <div class="order-items" id="order-items">
+          <!-- Items will be dynamically added here -->
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="section">
+        <h2>Order Summary</h2>
+        <div class="order-summary">
+          <p><span>Subtotal:</span> <span id="subtotal">₱0.00</span></p>
+          <p><span>Shipping:</span> <span>₱50.00</span></p>
+          <p><span>Tax (1.25%):</span> <span id="tax">₱0.00</span></p>
+          <p class="total"><span>Total:</span> <span id="total">₱0.00</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Package Travel</h2>
+      <div class="progress-bar">
+        <div class="step completed">
+          <span>Order Placed</span>
+          <span class="date-time">2025-05-12 10:00 AM</span>
+        </div>
+        <div class="step">
+          <span>Processing</span>
+          <span class="date-time">2025-05-12 12:00 PM</span>
+        </div>
+        <div class="step">
+          <span>Shipped</span>
+          <span class="date-time">2025-05-13 09:00 AM</span>
+        </div>
+        <div class="step">
+          <span>Out for Delivery</span>
+          <span class="date-time">2025-05-14 08:00 AM</span>
+        </div>
+        <div class="step">
+          <span>Delivered</span>
+          <span class="date-time">2025-05-14 05:00 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <section class="logo">
+      <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo">
+    </section>
+    <p class="footer-link">
+      <span><a href="#">Privacy Policy</a></span> |
+      <span><a href="#">Legal Info</a></span> |
+      <span><a href="#">Contact Us</a></span>
+    </p>
+    <section class="copyright">Copyright &copy; 2024 Omniscient's PC</section>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const params = new URLSearchParams(window.location.search);
+
+      // Retrieve parameters from the URL
+      const orderId = params.get("orderId") || `ORD-${Math.floor(Math.random() * 1000000)}`;
+      const userName = params.get("name") || "John Doe";
+      const userEmail = params.get("email") || "johndoe@example.com";
+      const userAddress = params.get("address") || "123 Placeholder Street";
+      const products = JSON.parse(decodeURIComponent(params.get("products") || "[]"));
+
+      // Set Order ID and User Information
+      document.getElementById("order-id").textContent = orderId;
+      document.getElementById("user-name").textContent = userName;
+      document.getElementById("user-email").textContent = userEmail;
+      document.getElementById("user-address").textContent = userAddress;
+
+      // Render Order Items
+      const orderItemsContainer = document.getElementById("order-items");
+      let subtotal = 0;
+
+      products.forEach(product => {
+        // Ensure price is parsed as a number
+        const price = parseFloat(product.price) || 0; // Parse price as a float
+        const quantity = product.quantity || 1; // Default quantity to 1 if not provided
+
+        const item = document.createElement("div");
+        item.classList.add("order-item");
+        item.innerHTML = `
+          <img src="${product.img}" alt="${product.name}">
+          <div class="details">
+            <span class="name">${product.name}</span>
+            <span class="quantity">Quantity: ${quantity}</span>
+          </div>
+          <span class="price">₱${(price * quantity).toLocaleString()}</span>
+        `;
+        orderItemsContainer.appendChild(item);
+
+        // Calculate subtotal
+        subtotal += price * quantity;
+      });
+
+      // Calculate totals
+      const tax = subtotal * 0.012; // 1.2% tax
+      const shipping = 50; // Flat shipping fee
+      const total = subtotal + tax + shipping;
+
+      // Update Order Summary
+      document.getElementById("subtotal").textContent = `₱${subtotal.toLocaleString()}`;
+      document.getElementById("tax").textContent = `₱${tax.toLocaleString()}`;
+      document.getElementById("total").textContent = `₱${total.toLocaleString()}`;
+    });
+  </script>
+</body>
+
+</html>

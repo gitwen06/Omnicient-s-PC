@@ -23,9 +23,47 @@ document.addEventListener("DOMContentLoaded", () => {
         quantity: 1,
       };
 
-      addToCart(product);
+      // Show confirmation pop-up
+      showConfirmationPopup(product);
     });
   });
+
+  // Function to show the confirmation pop-up
+  function showConfirmationPopup(product) {
+    // Create the modal container
+    const modal = document.createElement("div");
+    modal.classList.add("confirmation-modal");
+
+    // Add modal content
+    modal.innerHTML = `
+      <div class="modal-content">
+        <h2>Confirm Add to Cart</h2>
+        <p>Do you want to add <strong>${product.name}</strong> to your cart?</p>
+        <div class="modal-actions">
+          <button class="confirm-btn">Yes</button>
+          <button class="cancel-btn">No</button>
+        </div>
+      </div>
+    `;
+
+    // Append the modal to the body
+    document.body.appendChild(modal);
+
+    // Add event listeners for the buttons
+    modal.querySelector(".confirm-btn").addEventListener("click", () => {
+      addToCart(product);
+      closeModal(modal);
+    });
+
+    modal.querySelector(".cancel-btn").addEventListener("click", () => {
+      closeModal(modal);
+    });
+  }
+
+  // Function to close the modal
+  function closeModal(modal) {
+    document.body.removeChild(modal);
+  }
 
   // Add product to cart
   function addToCart(product) {
@@ -156,28 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <input type="email" id="email" name="email" required>
             <label for="address">Shipping Address:</label>
             <textarea id="address" name="address" required></textarea>
-            <label for="payment">Payment Method:</label>
-            <select id="payment" name="payment" required>
-              <option value="credit_card">Credit Card</option>
-              <option value="paypal">PayPal</option>
-              <option value="cash_on_delivery">Cash on Delivery</option>
-            </select>
-            <div id="payment-details" style="display: none; margin-top: 20px;">
-              <div id="credit-card-fields" style="display: none;">
-                <label for="card-number">Card Number:</label>
-                <input type="text" id="card-number" name="card-number" placeholder="Enter your card number">
-                <label for="expiry-date">Expiry Date:</label>
-                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY">
-                <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" name="cvv" placeholder="Enter CVV">
-              </div>
-              <div id="paypal-fields" style="display: none;">
-                <p>You will be redirected to PayPal to complete your purchase.</p>
-              </div>
-              <div id="cod-fields" style="display: none;">
-                <p>Cash on Delivery selected. Please ensure the shipping address is correct.</p>
-              </div>
-            </div>
             <button type="submit" class="confirm-btn">Confirm Purchase</button>
             <button type="button" class="cancel-btn">Cancel</button>
           </form>
@@ -185,41 +201,30 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       document.body.appendChild(confirmationDialog);
 
-      // Payment method selection logic
-      const paymentSelect = document.getElementById("payment");
-      const paymentDetails = document.getElementById("payment-details");
-      const creditCardFields = document.getElementById("credit-card-fields");
-      const paypalFields = document.getElementById("paypal-fields");
-      const codFields = document.getElementById("cod-fields");
-
-      // Function to update payment fields based on the selected payment method
-      function updatePaymentFields() {
-        paymentDetails.style.display = "block";
-        creditCardFields.style.display = "none";
-        paypalFields.style.display = "none";
-        codFields.style.display = "none";
-
-        if (paymentSelect.value === "credit_card") {
-          creditCardFields.style.display = "block";
-        } else if (paymentSelect.value === "paypal") {
-          paypalFields.style.display = "block";
-        } else if (paymentSelect.value === "cash_on_delivery") {
-          codFields.style.display = "block";
-        }
-      }
-
-      // Listen for changes in the payment method dropdown
-      paymentSelect.addEventListener("change", updatePaymentFields);
-
-      // Trigger the update function immediately to handle the default selection
-      updatePaymentFields();
-
       // Handle form submission
       document.getElementById("checkout-form").addEventListener("submit", (e) => {
         e.preventDefault();
-        alert("Thank you for your purchase!");
+
+        // Get user input values
+        const userName = document.getElementById("name").value;
+        const userEmail = document.getElementById("email").value;
+        const userAddress = document.getElementById("address").value;
+
+        // Generate a random order ID
+        const orderId = `ORD-${Math.floor(Math.random() * 1000000)}`;
+
+        // Serialize the cart data
+        const serializedCart = encodeURIComponent(JSON.stringify(cart));
+
+        // Build the URL for Tracking.html
+        const trackingUrl = `Tracking.html?orderId=${orderId}&name=${encodeURIComponent(userName)}&email=${encodeURIComponent(userEmail)}&address=${encodeURIComponent(userAddress)}&products=${serializedCart}`;
+
+        // Clear the cart
         localStorage.removeItem("cart");
-        location.reload();
+        cart.length = 0; // Reset the cart array
+
+        // Redirect to Tracking.html
+        window.location.href = trackingUrl;
       });
 
       // Handle cancel button

@@ -20,6 +20,7 @@
   <style>
     .products {
       display: flex;
+      
       justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
@@ -44,20 +45,19 @@
   <section class="container_landscape">
     <header>
       <nav id="nav_2">
+        <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo">
         <ul id="list-1">
-          <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png">
           <li><a href="index.html" class="homepage">Home</a></li>
-          <div class="nav-cart">
-            <i id="cart-icon" class="fa fa-shopping-cart fa-lg"></i>
-            <span id="cart-count" class="cart-badge">0</span>
-          </div>
+          <li><a href="shop.html" class="shop">Shop</a></li>
           <li id="loginNav"><a href="Login.html" class="Log in">Log In</a></li>
           <li id="userNav" style="display: none;"><span id="usernameDisplay"></span></li>
           <li id="logoutNav" style="display: none;"><a href="#" id="logoutLink">Log Out</a></li>
         </ul>
+        <div class="nav-cart">
+          <i id="cart-icon" class="fa fa-shopping-cart fa-lg"></i>
+          <span id="cart-count" class="cart-badge">0</span>
+        </div>
       </nav>
-      
-
     </header>
     <section id="products-section" class="landscape-view">
       <div id="cpus" class="section">
@@ -92,13 +92,17 @@
           <div class = "totalPrice">
              500
           </div>
-          <div class = "quantity">
-            <span class="minus"><</span>
+        </div>
+        <div class="item">
+          <img src="product-image.jpg" alt="Product Image">
+          <span class="name">Product Name</span>
+          <span class="totalPrice">₱1,500</span>
+          <div class="quantity">
+            <span>-</span>
             <span>1</span>
-            <span class="plus">></span>
+            <span>+</span>
           </div>
         </div>
-
       </div>
       <div class="btn">
         <button class="close">Close</button>
