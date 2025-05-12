@@ -112,6 +112,20 @@
             background: #00cc00;
             box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
         }
+        .btn.loading {
+            background: #333;
+            color: #bbb;
+            cursor: not-allowed;
+            position: relative;
+        }
+
+        .btn.loading::after {
+            content: "...";
+            position: absolute;
+            right: 15px;
+            font-size: 1rem;
+            color: #bbb;
+        }
         .toggle-text {
             margin-top: 1rem;
             font-size: 0.9rem;
@@ -142,6 +156,43 @@
             color: #00cc00;
             text-decoration: underline;
         }
+
+        /* Success and Error Message Styles */
+        @keyframes fadeSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-box {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+            z-index: 1000;
+            animation: fadeSlideIn 0.5s ease-out;
+        }
+
+        .success-message {
+            background: #00ff00;
+            color: #000;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+        }
+
+        .error-message {
+            background: #ff0000;
+            color: #fff;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+        }
     </style>
 </head>
 <body>
@@ -162,7 +213,7 @@
                     <input type="password" placeholder="Password" id="password" required>
                 </div>
                 <button type="submit" class="btn" id="loginbtn">Login</button>
-                <p class="toggle-text">Don't have an account? <a href="signup.html"> <span id="toggle">Register</span></a></p>   
+                <p class="toggle-text">Don't have an account? <a href="signup.html"><span id="toggle">Register</span></a></p>
             </form>
         </div>
     </div>

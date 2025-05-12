@@ -20,6 +20,22 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app); // Correct way to get authentication
 const db = getFirestore(app); 
 
+// Function to show success message
+function showSuccessMessage(message) {
+    // Create the success message element
+    const successMessage = document.createElement("div");
+    successMessage.classList.add("success-message");
+    successMessage.textContent = message;
+
+    // Append the message to the body
+    document.body.appendChild(successMessage);
+
+    // Remove the message after 3 seconds
+    setTimeout(() => {
+        successMessage.remove();
+    }, 3000);
+}
+
 // Select the button
 const signupbtn = document.getElementById('signupbtn');
 
@@ -32,26 +48,40 @@ signupbtn.addEventListener("click", function (event) {
     const repeatpass = document.getElementById('repeatpass').value;
 
     if (password !== repeatpass) {
-        alert("Passwords do not match!");
+        showSuccessMessage("Passwords do not match!");
         return;
     }
 
+    // Set the button to loading state
+    signupbtn.disabled = true;
+    signupbtn.textContent = "Processing...";
+    signupbtn.classList.add("loading");
+
     // Use Firebase v9+ method
     createUserWithEmailAndPassword(auth, email, password)
-    .then(async (userCredential) => {
-        const user = userCredential.user;
+        .then(async (userCredential) => {
+            const user = userCredential.user;
 
-        // Store username in Firestore
-        await setDoc(doc(db, "users", user.uid), {
-            username: username,
-            email: email
+            // Store username in Firestore
+            await setDoc(doc(db, "users", user.uid), {
+                username: username,
+                email: email
+            });
+
+            showSuccessMessage("Account created successfully!");
+
+            // Redirect to login page after 3 seconds
+            setTimeout(() => {
+                window.location.href = "Login.html";
+            }, 3000);
+        })
+        .catch((error) => {
+            showSuccessMessage("Error: " + error.message);
+        })
+        .finally(() => {
+            // Reset the button state
+            signupbtn.disabled = false;
+            signupbtn.textContent = "Sign Up";
+            signupbtn.classList.remove("loading");
         });
-
-        alert("Account created successfully!");
-        window.location.href = "Login.html"; // Redirect to login page
-    })
-    .catch((error) => {
-        alert("Error: " + error.message);
-    });
 });
-;

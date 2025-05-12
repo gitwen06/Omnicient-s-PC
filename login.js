@@ -18,17 +18,46 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// Function to show success or error message
+function showMessage(message, isSuccess = true) {
+    // Create the message element
+    const messageBox = document.createElement("div");
+    messageBox.classList.add("message-box");
+    messageBox.textContent = message;
+
+    // Apply success or error styles
+    if (isSuccess) {
+        messageBox.classList.add("success-message");
+    } else {
+        messageBox.classList.add("error-message");
+    }
+
+    // Append the message to the body
+    document.body.appendChild(messageBox);
+
+    // Remove the message after 3 seconds
+    setTimeout(() => {
+        messageBox.remove();
+    }, 3000);
+}
+
 // Handle login event
 document.getElementById('loginbtn').addEventListener("click", async function (event) {
     event.preventDefault();
 
+    const loginButton = document.getElementById('loginbtn');
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
 
     if (!email || !password) {
-        alert("Please fill in both email and password fields.");
+        showMessage("Please fill in both email and password fields.", false);
         return;
     }
+
+    // Set the button to loading state
+    loginButton.disabled = true;
+    loginButton.textContent = "Processing...";
+    loginButton.classList.add("loading");
 
     try {
         // Sign in the user
@@ -45,17 +74,27 @@ document.getElementById('loginbtn').addEventListener("click", async function (ev
             // Store username in localStorage for later use
             localStorage.setItem("loggedInUser", username);
 
-            alert(`Welcome, ${username}!`);
-            window.location.href = "index.html"; // Redirect to main page
+            showMessage(`Welcome, ${username}!`);
+
+            // Redirect to the homepage after 3 seconds
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 3000);
         } else {
-            alert("User data not found.");
+            showMessage("User data not found.", false);
         }
     } catch (error) {
         console.error("Login Error:", error.code, error.message);
-        alert(`Login failed: ${error.message}`);
+        showMessage(`Login failed: ${error.message}`, false);
+    } finally {
+        // Reset the button state
+        loginButton.disabled = false;
+        loginButton.textContent = "Login";
+        loginButton.classList.remove("loading");
     }
 });
 
+// Logout functionality
 document.addEventListener("DOMContentLoaded", function () {
     const usernameDisplay = document.getElementById("usernameDisplay");
     const loginNav = document.getElementById("loginNav");
@@ -81,11 +120,13 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
             await signOut(auth);
             localStorage.removeItem("loggedInUser"); // Clear stored username
-            alert("You have been logged out.");
-            window.location.href = "index.html"; // Redirect to home page
+            showMessage("You have been logged out.");
+            setTimeout(() => {
+                window.location.href = "index.html"; // Redirect to home page
+            }, 3000);
         } catch (error) {
             console.error("Logout Error:", error.message);
-            alert(`Logout failed: ${error.message}`);
+            showMessage(`Logout failed: ${error.message}`, false);
         }
     });
 });
