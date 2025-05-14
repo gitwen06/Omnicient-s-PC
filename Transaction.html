@@ -17,24 +17,21 @@
 </head>
 
 <body>
+    <nav id="nav_2">
+        <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo">
+        <button id="menu-toggle" class="hamburger-menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul id="list-1">
+            <li><a href="index.html" class="homepage">Home</a></li>
+            <li><a href="shop.html" class="shop">Shop</a></li>
+            <li id="loginNav"><a href="Login.html" class="Log in">Log In</a></li>
+            <li id="userNav" style="display: none;"><span id="usernameDisplay"></span></li>
+            <li id="logoutNav" style="display: none;"><a href="#" id="logoutLink">Log Out</a></li>
+        </ul>
+    </nav>
     <div class="content-wrapper">
         <section class="container landscape">
-            <header>
-                <nav id="nav_2">
-                    <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo">
-                    <button id="menu-toggle" class="hamburger-menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <ul id="list-1">
-                        <li><a href="index.html" class="homepage">Home</a></li>
-                        <li><a href="shop.html" class="shop">Shop</a></li>
-                        <li id="loginNav"><a href="Login.html" class="Log in">Log In</a></li>
-                        <li id="userNav" style="display: none;"><span id="usernameDisplay"></span></li>
-                        <li id="logoutNav" style="display: none;"><a href="#" id="logoutLink">Log Out</a></li>
-                    </ul>
-                </nav>
-            </header>
-
             <section class="transaction-container">
                 <section class="product-info">
                     <span class="product-image">
@@ -123,6 +120,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            const loggedInUser = localStorage.getItem("loggedInUser");
             const params = new URLSearchParams(window.location.search);
 
             // CPU-related variables
@@ -250,25 +248,33 @@
 
             // Order form submission
             document.getElementById("checkout-form").addEventListener("submit", function (event) {
-                event.preventDefault();
+                if (loggedInUser) {
+                   event.preventDefault();
 
-                // Generate a random order ID
-                const orderId = `ORD-${Math.floor(Math.random() * 1000000)}`;
+                   // Generate a random order ID
+                   const orderId = `ORD-${Math.floor(Math.random() * 1000000)}`;
 
-                // Get user input values
-                const userName = document.getElementById("name").value;
-                const userEmail = document.getElementById("email").value;
-                const userAddress = document.getElementById("address").value;
+                   // Get user input values
+                   const userName = document.getElementById("name").value;
+                   const userEmail = document.getElementById("email").value;
+                   const userAddress = document.getElementById("address").value;
 
-                // Sanitize the product price to remove formatting (e.g., ₱42,000.00 -> 42000)
-                const sanitizedPrice = parseFloat(productPrice.replace(/[₱,]/g, "")) || 0;
+                   // Sanitize the product price to remove formatting (e.g., ₱42,000.00 -> 42000)
+                   const sanitizedPrice = parseFloat(productPrice.replace(/[₱,]/g, "")) || 0;
 
-                // Build the URL for Tracking.html
-                const trackingUrl = `Tracking.html?orderId=${orderId}&name=${encodeURIComponent(userName)}&email=${encodeURIComponent(userEmail)}&address=${encodeURIComponent(userAddress)}&products=${encodeURIComponent(JSON.stringify([{
-                    name: productName,
-                    img: productImage,
-                    price: sanitizedPrice
-                }]))}`;
+                   // Build the URL for Tracking.html
+                   const trackingUrl = `Tracking.html?orderId=${orderId}&name=${encodeURIComponent(userName)}&email=${encodeURIComponent(userEmail)}&address=${encodeURIComponent(userAddress)}&products=${encodeURIComponent(JSON.stringify([{
+                       name: productName,
+                       img: productImage,
+                       price: sanitizedPrice
+                   }]))}`;
+
+                   // Redirect to Tracking.html
+                   window.location.href = trackingUrl;
+                } else {
+                    alert("Please log in to complete your purchase.");
+                    window.location.href = "Login.html"; // Redirect to login page
+                }
 
                 // Redirect to Tracking.html
                 window.location.href = trackingUrl;
@@ -303,6 +309,60 @@
             menuToggle.addEventListener("click", function () {
                 navLinks.classList.toggle("active");
                 menuToggle.classList.toggle("active"); // Add active class to the button for animation
+            });
+        });
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+        // Firebase configuration (reuse from login.js)
+        const firebaseConfig = {
+            apiKey: "AIzaSyAoKOHczsYxRkn3NWzOl9rV5fb2Lqmtqrg",
+            authDomain: "omnicient-s-pc.firebaseapp.com",
+            projectId: "omnicient-s-pc",
+            storageBucket: "omnicient-s-pc.firebasestorage.app",
+            messagingSenderId: "563738483508",
+            appId: "1:563738483508:web:45402c24f4b0a3d43ca361",
+            measurementId: "G-NJ2PGRMC1N"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const loggedInUser = localStorage.getItem("loggedInUser");
+
+        // Autofill the form fields
+        document.addEventListener("DOMContentLoaded", async function () {
+            const fullNameField = document.getElementById("name");
+            const emailField = document.getElementById("email");
+
+            // Check if the user is logged in
+            onAuthStateChanged(auth, async (user) => {
+                if (loggedInUser) {
+                    try {
+                        // Fetch user data from Firestore
+                        const userDocRef = doc(db, "users", user.uid);
+                        const userDoc = await getDoc(userDocRef);
+
+                        if (userDoc.exists()) {
+                            const userData = userDoc.data();
+
+                            // Autofill the form fields
+                            fullNameField.value = userData.username || ""; // Autofill Full Name
+                            emailField.value = user.email || ""; // Autofill Email
+                        } else {
+                            console.error("User data not found in Firestore.");
+                        }
+                    } catch (error) {
+                        console.error("Error fetching user data:", error.message);
+                    }
+                } else {
+                    console.log("No user is logged in.");
+                }
             });
         });
     </script>

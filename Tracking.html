@@ -352,7 +352,7 @@
         <button id="menu-toggle" class="hamburger-menu">
             <i class="fas fa-bars"></i>
         </button>
-        <ul id="list-2">
+        <ul id="list-1">
             <li><a href="index.html" class="homepage">Home</a></li>
             <li><a href="shop.html" class="shop">Shop</a></li>
             <li id="loginNav"><a href="Login.html" class="Log in">Log In</a></li>
@@ -400,26 +400,7 @@
     <div class="sidebar">
       <h2>Package Travel</h2>
       <div class="progress-bar">
-        <div class="step completed">
-          <span>Order Placed</span>
-          <span class="date-time">2025-05-12 10:00 AM</span>
-        </div>
-        <div class="step">
-          <span>Processing</span>
-          <span class="date-time">2025-05-12 12:00 PM</span>
-        </div>
-        <div class="step">
-          <span>Shipped</span>
-          <span class="date-time">2025-05-13 09:00 AM</span>
-        </div>
-        <div class="step">
-          <span>Out for Delivery</span>
-          <span class="date-time">2025-05-14 08:00 AM</span>
-        </div>
-        <div class="step">
-          <span>Delivered</span>
-          <span class="date-time">2025-05-14 05:00 PM</span>
-        </div>
+        <!-- Progress steps will be dynamically added here -->
       </div>
     </div>
   </div>
@@ -487,11 +468,48 @@
       document.getElementById("subtotal").textContent = `₱${subtotal.toLocaleString()}`;
       document.getElementById("tax").textContent = `₱${tax.toLocaleString()}`;
       document.getElementById("total").textContent = `₱${total.toLocaleString()}`;
+
+      // Progress Bar: Dynamic Time Calculation
+      function pad(n) { return n < 10 ? '0' + n : n; }
+      function formatDateTime(date) {
+        const year = date.getFullYear();
+        const month = pad(date.getMonth() + 1);
+        const day = pad(date.getDate());
+        let hour = date.getHours();
+        const min = pad(date.getMinutes());
+        const ampm = hour >= 12 ? 'PM' : 'AM';
+        hour = hour % 12;
+        hour = hour ? hour : 12;
+        return `${year}-${month}-${day} ${hour}:${min} ${ampm}`;
+      }
+
+      const now = new Date();
+      const steps = [
+        { label: "Order Placed", completed: true, time: new Date(now) },
+        { label: "Processing", completed: false, time: new Date(now.getTime() + 3 * 60 * 60 * 1000) },
+        { label: "Shipped", completed: false, time: new Date(now.getTime() + 6 * 60 * 60 * 1000) },
+        { label: "Out for Delivery", completed: false, time: new Date(now.getTime() + 9 * 60 * 60 * 1000) },
+        { label: "Delivered", completed: false, time: new Date(now.getTime() + 12 * 60 * 60 * 1000) }
+      ];
+
+      const progressBar = document.querySelector('.progress-bar');
+      if (progressBar) {
+        progressBar.innerHTML = '';
+        steps.forEach((step, idx) => {
+          const div = document.createElement('div');
+          div.className = 'step' + (step.completed ? ' completed' : '');
+          div.innerHTML = `
+            <span>${step.label}</span>
+            <span class="date-time">${idx === 0 ? formatDateTime(step.time) : 'Est: ' + formatDateTime(step.time)}</span>
+          `;
+          progressBar.appendChild(div);
+        });
+      }
     });
 
     document.addEventListener("DOMContentLoaded", function () {
         const menuToggle = document.getElementById("menu-toggle");
-        const navLinks = document.getElementById("list-2");
+        const navLinks = document.getElementById("list-1");
 
         // Toggle the visibility of the navigation links
         menuToggle.addEventListener("click", function () {

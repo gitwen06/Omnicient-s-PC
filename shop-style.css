@@ -278,6 +278,9 @@ body {
     .hamburger-menu {
         display: block; /* Show the hamburger menu button */
     }
+    .cartTab {
+        width: 402px;
+    }
 }
 
 /* For phones (max-width: 480px) */

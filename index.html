@@ -5,24 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="hover.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script type="module" src="login.js"></script>
     <script type="module" src="index.js"></script>
     <link rel="stylesheet" href="media.css">
-    <title>Omnicient's PC Official Site: Graphics Cards, CPUs, RAM, Pre-Built PCs </title>
+    <link rel="stylesheet" href="shop-style.css">
+    <title>Omniscient's PC Official Site: Graphics Cards, CPUs, RAM, Pre-Built PCs </title>
   </head>
   <body>
+    <nav id="nav_2">
+      <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" alt="Omniscient's PC Logo">
+      <button id="menu-toggle" class="hamburger-menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul id="list-1">
+        <li><a href="index.html" class="homepage">Home</a></li>
+        <li><a href="shop.html" class="shop">Shop</a></li>
+        <li id="loginNav"><a href="Login.html" class="Log in">Log In</a></li>
+        <li id="userNav" style="display: none;"><span id="usernameDisplay"></span></li>
+        <li id="logoutNav" style="display: none;"><a href="#" id="logoutLink">Log Out</a></li>
+      </ul>
+    </nav>
     <section class="container">
-      <header>
-        <nav id="nav_1" class="indexnav">
-          <ul id="list-1">
-            <img src="images/Omniscient_s_PC_LOGO-removebg-preview.png" id="indeximg" alt="Omniscient's PC Logo">
-            <li><a href="shop.html" class="shop">Shop</a></li>
-            <li id="loginNav"><a href="Login.html" class="Log in">Log In</a></li>
-            <li id="userNav" style="display: none;"><span id="usernameDisplay"></span></li>
-            <li id="logoutNav" style="display: none;"><a href="index.html" id="logoutLink">Log Out</a></li>
-          </ul>        
-        </nav>
-      </header>
       <!-- <section class="container"> -->
         <!-- Top Area images and buttons -->
         <section class="top-area">
@@ -33,18 +37,6 @@
               <a href="shop.html" class="join">EXPLORE OUR SHOP</a>
             </section>
           </section>
-          <!-- <section class="img_2">
-            <a href="#" class="learn">LEARN MORE</a>
-          </section>
-          <section class="img_3">
-            <a href="#" class="learn">LEARN MORE</a>
-          </section>
-          <section class="img_4">
-            <a href="#" class="learn">LEARN MORE</a>
-          </section>
-          <section class="img_5">
-            <a href="#" class="learn">LEARN MORE</a>
-          </section> -->
         </section>
     
         <section class="middle-area">
@@ -95,5 +87,16 @@
         <section class="copyright">Copyright &copy; 2025 Omnicient PC's</section>
       </footer>
     </section>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById("menu-toggle");
+        const navLinks = document.getElementById("list-1");
+        if (menuToggle && navLinks) {
+          menuToggle.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+          });
+        }
+      });
+    </script>
   </body>
 </html>

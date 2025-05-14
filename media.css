@@ -3,9 +3,6 @@
       margin-left: 0;
       transition: linear 0.5s;
     }
-    #nav_2 ul li, .base-image{
-      display: none;
-    }
     #nav_2 img{
       display: none;
     }
@@ -18,9 +15,7 @@
     #title {
       margin-top: 100px;
     }
-    ul#list-1 {
-      height: 50px;
-    } 
+     
     .img_1 {
       width: 100%;
       height: 415px;
@@ -158,9 +153,6 @@
       margin-left: 20px;
       transition: linear 0.5s;
     }
-    #nav_2 ul li, .base-image {
-      display: none;
-    }
     #list-1 h2 {
       margin-left: 40px;
       font-size: 1.7rem;
@@ -232,7 +224,6 @@
       margin-bottom: 15px;
     }
     .base li {
-      /* display: inline-flex; */
       font-size: .95rem;
       padding-right: 25px;
     }
@@ -268,9 +259,6 @@
     }
   }
   @media (min-width: 916px) and (max-width: 1024px){
-    #nav_2 ul li, .base-image {
-      display: none;
-    }
      #nav_1 img {
       margin-left: 20px;
       transition: linear 0.5s;
@@ -349,7 +337,6 @@
       margin-bottom: 15px;
     }
     .base li {
-      /* display: inline-flex; */
       font-size: .95rem;
       padding-right: 25px;
     }
@@ -605,3 +592,100 @@
       padding: 8px 15px;
     }
   }
+
+/* Responsive Navbar for index.html */
+#nav_2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #000, #303030);
+  padding: 10px 20px;
+  border-bottom: 3px solid #76b900;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+#nav_2 img {
+  height: 50px;
+  margin-right: 20px;
+  background-color: #303030;
+  border-radius: 22px;
+}
+
+#list-2 {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s;
+}
+
+.hamburger-menu {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+@media (max-width: 900px) {
+  .list-1 {
+    display: none;
+    flex-direction: column;
+    background: #000;
+    position: absolute;
+    top: 70px;    /* Should match #nav_2 height */
+    left: 0;
+    right: 0;
+    width: 100%;  /* Use 100% to align with navbar */
+    padding: 10px 0;
+    margin: 0;    /* Ensure no margin */
+    border: none; /* Ensure no border */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    z-index: 1700;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .list-1.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .hamburger-menu {
+    display: block;
+  }
+}
+
+/* New styles for .list-1 */
+.list-1 {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s;
+}
+
+.list-1.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#list-1 li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}

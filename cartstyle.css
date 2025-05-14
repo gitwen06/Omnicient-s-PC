@@ -118,8 +118,8 @@ body.showCart .container {
 
 .cartTab .listCart .quantity span {
     display: inline-block;
-    width: 50px; /* Increased width */
-    height: 50px; /* Increased height */
+    width: auto;
+    height: auto;
     background-color: #76b900; /* Highlighted button color */
     color: #000;
     font-weight: bold;
@@ -138,7 +138,7 @@ body.showCart .container {
 
 /* Discard Button */
 .cartTab .listCart .discard {
-    background-color: #ff4d4d;
+    background-color: rgba(5, 5, 5, 0.5);
     color: white;
     border: none;
     padding: 5px 10px;
@@ -183,7 +183,7 @@ body.showCart .container {
 }
 
 .cartTab .btn .close {
-    background-color: #ff4d4d; /* Red for close */
+    background-color: rgba(5, 5, 5, 0.5); /* Red for close */
     color: #fff;
 }
 

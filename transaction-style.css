@@ -188,7 +188,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(90deg, #000, #303030); /* Gradient background */
+  background: linear-gradient(90deg, #000, #303030);
   padding: 10px 20px;
   border-bottom: 3px solid #76b900;
   position: fixed;
@@ -196,24 +196,27 @@ body {
   width: 100%;
   height: 70px;
   z-index: 1000;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
 #nav_2 img {
-  height: 50px; /* Adjusted logo size */
+  height: 50px;
   margin-right: 20px;
+  background-color: #303030;
+  border-radius: 22px;
 }
 
 #list-1 {
   list-style: none;
   display: flex;
-  gap: 30px; /* Increased spacing between items */
+  gap: 30px;
   align-items: center;
   margin: 0;
   padding: 0;
+  transition: all 0.3s;
 }
 
-#list-1 h2 a, #list-1 li a {
+#list-1 li a {
   text-decoration: none;
   color: #fff;
   font-size: 18px;
@@ -221,9 +224,9 @@ body {
   transition: color 0.3s, transform 0.3s;
 }
 
-#list-1 h2 a:hover, #list-1 li a:hover {
-  color: #76b900; /* Highlight color */
-  transform: scale(1.1); /* Slight zoom effect */
+#list-1 li a:hover {
+  color: #76b900;
+  transform: scale(1.1);
 }
 
 .nav-cart {
@@ -270,13 +273,13 @@ body {
 
 /* Hamburger Menu Button */
 .hamburger-menu {
-    display: none; /* Hide by default */
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 1001; /* Ensure it appears above other elements */
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1001;
 }
 
 /* Responsive Design for Navbar */
@@ -291,10 +294,11 @@ body {
         background: #000; /* Background for the dropdown menu */
         position: absolute;
         top: 70px; /* Below the navbar */
+        left: 0;
         right: 0;
         width: 100%;
         padding: 10px 0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         z-index: 1000;
     }
 
