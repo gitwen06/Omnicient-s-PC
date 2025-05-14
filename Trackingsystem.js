@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const productImage = params.get("image");
   const productPrice = params.get("price");
 
+  // Retrieve payment method from URL or set a default value
+  const paymentMethod = params.get("payment-method") || "Cash on Delivery";
+
   // DOM elements
   const orderItemsContainer = document.getElementById("order-items");
   const subtotalElement = document.getElementById("subtotal");
@@ -20,6 +23,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Set Order ID and Shipping Address
   document.getElementById("order-id").textContent = orderId;
   document.getElementById("shipping-address").textContent = shippingAddress;
+
+  // Set the payment method in the Payment Method section
+  document.getElementById("payment-method").textContent = paymentMethod;
 
   // Render Order Items
   if (productName && productImage && productPrice) {
