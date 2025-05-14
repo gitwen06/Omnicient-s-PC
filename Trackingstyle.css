@@ -135,7 +135,7 @@
   border-radius: 22px;
 }
 
-#list-2 {
+#list-1 {
   list-style: none;
   display: flex;
   gap: 30px; /* Increased spacing between items */
@@ -144,7 +144,7 @@
   padding: 0;
 }
 
-#list-2 li a {
+#list-1 li a {
   text-decoration: none;
   color: #fff;
   font-size: 18px;
@@ -152,7 +152,7 @@
   transition: color 0.3s, transform 0.3s;
 }
 
-#list-2 li a:hover {
+#list-1 li a:hover {
   color: #76b900; /* Highlight color */
   transform: scale(1.1); /* Slight zoom effect */
 }
@@ -174,7 +174,7 @@
     display: block; /* Show the hamburger menu button */
   }
 
-  #list-2 {
+  #list-1 {
     display: none; /* Hide the navigation links by default */
     flex-direction: column;
     background: #000; /* Background for the dropdown menu */
@@ -190,18 +190,18 @@
     transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
   }
 
-  #list-2.active {
+  #list-1.active {
     display: flex; /* Show the navigation links when active */
     opacity: 1; /* Fully visible */
     transform: translateY(0); /* Slide into place */
   }
 
-  #list-2 li {
+  #list-1 li {
     text-align: center;
     margin: 10px 0;
   }
 
-  #list-2 li a {
+  #list-1 li a {
     color: #fff;
     text-decoration: none;
     font-size: 18px;
@@ -209,7 +209,7 @@
     transition: color 0.3s ease;
   }
 
-  #list-2 li a:hover {
+  #list-1 li a:hover {
     color: #76b900; /* Highlight color on hover */
   }
 
