@@ -689,3 +689,18 @@
   font-weight: bold;
   transition: color 0.3s ease;
 }
+
+#usernameDisplay[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  background: #222;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 120%;
+  white-space: nowrap;
+  z-index: 100;
+}

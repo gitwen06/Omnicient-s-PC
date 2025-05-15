@@ -36,21 +36,78 @@ function showSuccessMessage(message) {
     }, 3000);
 }
 
+// Function to set error message
+function setError(inputId, message) {
+    const input = document.getElementById(inputId);
+    const errorDiv = document.getElementById(inputId + '-error');
+    input.classList.add('error');
+    if (errorDiv) errorDiv.textContent = message;
+
+    // Remove error after 3 seconds
+    if (errorDiv) {
+        setTimeout(() => {
+            clearError(inputId);
+        }, 3000);
+    }
+
+    // Remove error on focus
+    input.addEventListener('focus', function onFocus() {
+        clearError(inputId);
+        input.removeEventListener('focus', onFocus);
+    });
+}
+
+// Function to clear error message
+function clearError(inputId) {
+    const input = document.getElementById(inputId);
+    const errorDiv = document.getElementById(inputId + '-error');
+    input.classList.remove('error');
+    if (errorDiv) errorDiv.textContent = '';
+}
+
 // Select the button
 const signupbtn = document.getElementById('signupbtn');
 
 signupbtn.addEventListener("click", function (event) {
     event.preventDefault(); // Prevents form submission
 
-    const email = document.getElementById('email').value;
-    const username = document.getElementById('username').value;
+    // Clear all previous errors
+    ['username', 'email', 'password', 'repeatpass'].forEach(clearError);
+
+    const email = document.getElementById('email').value.trim();
+    const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value;
     const repeatpass = document.getElementById('repeatpass').value;
 
-    if (password !== repeatpass) {
-        showSuccessMessage("Passwords do not match!");
-        return;
+    let hasError = false;
+
+    if (!username) {
+        setError('username', 'Username is required.');
+        hasError = true;
     }
+    if (!email) {
+        setError('email', 'Email is required.');
+        hasError = true;
+    } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+        setError('email', 'Enter a valid email address.');
+        hasError = true;
+    }
+    if (!password) {
+        setError('password', 'Password is required.');
+        hasError = true;
+    } else if (password.length < 6) {
+        setError('password', 'Password must be at least 6 characters.');
+        hasError = true;
+    }
+    if (!repeatpass) {
+        setError('repeatpass', 'Please confirm your password.');
+        hasError = true;
+    } else if (password !== repeatpass) {
+        setError('repeatpass', 'Passwords do not match.');
+        hasError = true;
+    }
+
+    if (hasError) return;
 
     // Set the button to loading state
     signupbtn.disabled = true;

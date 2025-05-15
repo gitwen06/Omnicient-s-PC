@@ -111,29 +111,48 @@ body.showCart .container {
 /* Quantity Controls */
 .cartTab .listCart .quantity {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cartTab .listCart .qty-controls {
+    margin-top: 10px;
+    display: flex;
+    gap: 6px; /* Smaller gap between buttons */
     align-items: center;
     justify-content: center;
-    gap: 15px; /* Increased spacing between buttons */
 }
 
+.cartTab .listCart .qty-label {
+    font-size: 12px;
+    color: #bbb;
+    margin-top: 2px;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+.cartTab .listCart .qty-controls span,
 .cartTab .listCart .quantity span {
-    display: inline-block;
-    width: auto;
-    height: auto;
-    background-color: #76b900; /* Highlighted button color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;         /* Square width */
+    height: 36px;        /* Square height */
+    background-color: #76b900;
     color: #000;
     font-weight: bold;
-    border-radius: 12px; /* More rounded corners */
+    border-radius: 10px;
     cursor: pointer;
     text-align: center;
-    line-height: 50px; /* Center text vertically */
-    font-size: 20px; /* Larger font size for better readability */
+    font-size: 15px;     /* Bigger, but not oversized */
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 0 1px;
 }
 
+.cartTab .listCart .qty-controls span:hover,
 .cartTab .listCart .quantity span:hover {
-    background-color: #8cd400; /* Lighter green on hover */
-    transform: scale(1.1); /* Slight zoom effect */
+    background-color: #8cd400;
+    transform: scale(1.1);
 }
 
 /* Discard Button */

@@ -129,6 +129,11 @@
             border-bottom-color: #00ff00;
             box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
         }
+        .input-group input.error {
+            border-bottom: 2px solid #ff3333 !important;
+            border-right: 2px solid #ff3333 !important;
+            background: rgba(255,0,0,0.07);
+        }
         .btn {
             background: #00ff00;
             color: #000;
@@ -205,6 +210,13 @@
             color: #00cc00;
             text-decoration: underline;
         }
+        .error-message {
+            color: #ff3333;
+            font-size: 0.85rem;
+            margin-top: 4px;
+            text-align: left;
+            min-height: 18px;
+        }
     </style>
 </head>
 <body>
@@ -219,10 +231,12 @@
                 <div class="input-group">
                     <i class="fas fa-user"></i>
                     <input type="text" placeholder="Username" id="username" required>
+                    <div class="error-message" id="username-error"></div>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
                     <input type="email" placeholder="Email" id="email" required>
+                    <div class="error-message" id="email-error"></div>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
@@ -230,6 +244,7 @@
                     <button type="button" class="toggle-password" data-target="password" tabindex="-1">
                         <i class="fas fa-eye"></i>
                     </button>
+                    <div class="error-message" id="password-error"></div>
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
@@ -237,6 +252,7 @@
                     <button type="button" class="toggle-password" data-target="repeatpass" tabindex="-1">
                         <i class="fas fa-eye"></i>
                     </button>
+                    <div class="error-message" id="repeatpass-error"></div>
                 </div>
                 <button type="submit" class="btn" id="signupbtn">Sign Up</button>
                 <p class="toggle-text">Already have an account? <a href="Login.html"><span>Login</span></a></p>

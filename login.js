@@ -41,6 +41,34 @@ function showMessage(message, isSuccess = true) {
     }, 3000);
 }
 
+// Function to set error on input fields
+function setError(inputId, message) {
+    const input = document.getElementById(inputId);
+    const errorDiv = document.getElementById(inputId + '-error');
+    input.classList.add('error');
+    if (errorDiv) errorDiv.textContent = message;
+
+    // Remove error after 3 seconds
+    if (errorDiv) {
+        setTimeout(() => {
+            clearError(inputId);
+        }, 3000);
+    }
+
+    // Remove error on focus
+    input.addEventListener('focus', function onFocus() {
+        clearError(inputId);
+        input.removeEventListener('focus', onFocus);
+    });
+}
+
+function clearError(inputId) {
+    const input = document.getElementById(inputId);
+    const errorDiv = document.getElementById(inputId + '-error');
+    input.classList.remove('error');
+    if (errorDiv) errorDiv.textContent = '';
+}
+
 // Handle login event
 document.getElementById('loginbtn').addEventListener("click", async function (event) {
     event.preventDefault();
@@ -49,10 +77,19 @@ document.getElementById('loginbtn').addEventListener("click", async function (ev
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
 
-    if (!email || !password) {
-        showMessage("Please fill in both email and password fields.", false);
-        return;
+    // Clear previous errors
+    ['email', 'password'].forEach(clearError);
+
+    let hasError = false;
+    if (!email) {
+        setError('email', 'Email is required.');
+        hasError = true;
     }
+    if (!password) {
+        setError('password', 'Password is required.');
+        hasError = true;
+    }
+    if (hasError) return;
 
     // Set the button to loading state
     loginButton.disabled = true;

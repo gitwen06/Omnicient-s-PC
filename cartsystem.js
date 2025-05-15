@@ -112,9 +112,12 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="name">${item.name}</div>
         <div class="totalPrice">₱${(item.price * item.quantity).toLocaleString()}</div>
         <div class="quantity">
-          <span class="minus" data-index="${index}">-</span>
-          <span>${item.quantity}</span>
-          <span class="plus" data-index="${index}">+</span>
+          <div class="qty-controls">
+            <span class="minus" data-index="${index}">-</span>
+            <span>${item.quantity}</span>
+            <span class="plus" data-index="${index}">+</span>
+          </div>
+          <div class="qty-label">Qty</div>
         </div>
         <button class="discard" data-index="${index}">Remove</button>
       `;
@@ -297,4 +300,101 @@ menuToggle.addEventListener("click", function () {
 closePopup.addEventListener("click", function () {
   popupNav.classList.remove("active");
 });
+});
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const fullNameField = document.getElementById("name");
+  const emailField = document.getElementById("email");
+
+  // Autofill user info
+  onAuthStateChanged(auth, async (user) => {
+      if (user) {
+          try {
+              const userDocRef = doc(db, "users", user.uid);
+              const userDoc = await getDoc(userDocRef);
+              if (userDoc.exists()) {
+                  const userData = userDoc.data();
+                  fullNameField.value = userData.username || "";
+                  emailField.value = user.email || "";
+              }
+          } catch (error) {
+              console.error("Error fetching user data:", error.message);
+          }
+      }
+  });
+
+  // Set product details on the page
+  const params = new URLSearchParams(window.location.search);
+  const productName = params.get("name");
+  const productImage = params.get("image");
+  const productPrice = params.get("price");
+  if (productName && productImage) {
+      document.querySelector(".product-name").textContent = productName;
+      document.querySelector(".product-image img").src = productImage;
+      document.querySelector(".product-price").textContent = productPrice;
+  }
+
+  // Order form submission
+  document.getElementById("checkout-form").addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      // Generate a random order ID (for tracking page only)
+      const orderId = `ORD-${Math.floor(Math.random() * 1000000)}`;
+
+      // Get user input values
+      const userName = document.getElementById("name").value;
+      const userEmail = document.getElementById("email").value;
+      const userAddress = document.getElementById("address").value;
+
+      // Get product info from URL params
+      const sanitizedPrice = parseFloat(productPrice.replace(/[₱,]/g, "")) || 0;
+
+      // Build the URL for Tracking.html
+      const trackingUrl = `Tracking.html?orderId=${orderId}&name=${encodeURIComponent(userName)}&email=${encodeURIComponent(userEmail)}&address=${encodeURIComponent(userAddress)}&products=${encodeURIComponent(JSON.stringify([{
+          name: productName,
+          img: productImage,
+          price: sanitizedPrice
+      }]))}`;
+
+      // Save order details to Firestore
+      const user = auth.currentUser;
+      if (user) {
+          await addDoc(collection(db, "users", user.uid, "orders"), {
+              placedAt: new Date(),
+              status: "Processing",
+              products: [
+                  { name: productName, price: sanitizedPrice }
+              ]
+          });
+          // Redirect to Tracking.html
+          window.location.href = trackingUrl;
+      } else {
+          alert("Please log in to complete your purchase.");
+          window.location.href = "Login.html";
+      }
+  });
+
+  // Handle cancel button
+  document.querySelector(".cancel-btn").addEventListener("click", function () {
+      window.location.href = "shop.html";
+  });
+
+  // Payment method selection
+  const paymentSelect = document.getElementById("payment");
+  const paymentDetails = document.getElementById("payment-details");
+  const codFields = document.getElementById("cod-fields");
+  function updatePaymentFields() {
+      paymentDetails.style.display = "block";
+      codFields.style.display = "block";
+  }
+  paymentSelect.addEventListener("change", updatePaymentFields);
+  updatePaymentFields();
+
+  // Navbar hamburger
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("list-1");
+  menuToggle.addEventListener("click", function () {
+      navLinks.classList.toggle("active");
+      menuToggle.classList.toggle("active");
+  });
 });
