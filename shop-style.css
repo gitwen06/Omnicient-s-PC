@@ -329,7 +329,7 @@ body {
     background: #000; /* Background color for the dropdown */
     padding: 10px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Add a shadow for better visibility */
-    z-index: 1000; /* Ensure it appears above other elements */
+    z-index: 2001; /* Ensure it appears above other elements */
     animation: slideDown 0.3s ease-in-out; /* Add a slide-down animation */
 }
 
